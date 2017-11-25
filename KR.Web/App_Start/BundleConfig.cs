@@ -29,6 +29,9 @@ namespace KR.Web
 
             bundles.Add(new ScriptBundle("~/bundles/Customer").Include(
                       "~/Scripts/Custom/Customer.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Designer").Include(
+                     "~/Scripts/Custom/Designer.js"));
         }
     }
 }

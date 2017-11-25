@@ -1,4 +1,8 @@
-﻿using System;
+﻿using KR.Web.Helpers;
+using Ninject;
+using Ninject.Modules;
+using Ninject.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +22,10 @@ namespace KR.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Helpers.AutoMapper.Init();
+
+            //NinjectModule registrations = new NinjectRegistrations();
+            //var kernel = new StandardKernel(registrations);
+            //DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
 }

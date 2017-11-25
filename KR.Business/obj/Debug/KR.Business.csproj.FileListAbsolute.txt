@@ -32,3 +32,37 @@ c:\Users\Женя\documents\visual studio 2017\Projects\Kursova\KR.Business\bin\
 c:\Users\Женя\documents\visual studio 2017\Projects\Kursova\KR.Business\obj\Debug\KR.Business.csprojResolveAssemblyReference.cache
 c:\Users\Женя\documents\visual studio 2017\Projects\Kursova\KR.Business\obj\Debug\KR.Business.dll
 c:\Users\Женя\documents\visual studio 2017\Projects\Kursova\KR.Business\obj\Debug\KR.Business.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\csc.exe
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\csc.exe.config
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\csc.rsp
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\csi.exe
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\csi.rsp
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.AppContext.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\vbc.exe
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\vbc.exe.config
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\vbc.rsp
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\VBCSCompiler.exe
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\KR.Business.dll.config
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\KR.Business.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\KR.Business.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.csprojResolveAssemblyReference.cache
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.pdb

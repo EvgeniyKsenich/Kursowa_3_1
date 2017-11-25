@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KR.Business.Entities;
+using KR.Business.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Linq;
 
 namespace KR.DbEF.Repositories
 {
-    public class CustomerRepositories
+    public class CustomerRepositories : ICustomer<Customer>
     {
         public IEnumerable<Customer> GetList()
         {
