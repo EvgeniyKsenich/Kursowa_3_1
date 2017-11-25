@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LD_kursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="land" Relationship="Self.FK__land__customer_i__145C0A3F" FromRole="customer" ToRole="land" />
+  </EntityType>
+  <EntityType Name="designer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK__zakaz__designer___1BFD2C07" FromRole="designer" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="difficulties">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subj" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="land" Relationship="Self.land_difficulties" FromRole="difficulties" ToRole="land" />
+  </EntityType>
+  <EntityType Name="land">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customer_id" Type="Int32" Nullable="false" />
+    <Property Name="size" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="customer" Relationship="Self.FK__land__customer_i__145C0A3F" FromRole="land" ToRole="customer" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK__zakaz__land_id__1CF15040" FromRole="land" ToRole="zakaz" />
+    <NavigationProperty Name="difficulties" Relationship="Self.land_difficulties" FromRole="land" ToRole="difficulties" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="work">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typee" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="countt" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="zakaz" Relationship="Self.zakaz_work" FromRole="work" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="zakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="designer_id" Type="Int32" Nullable="false" />
+    <Property Name="land_id" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="designer" Relationship="Self.FK__zakaz__designer___1BFD2C07" FromRole="zakaz" ToRole="designer" />
+    <NavigationProperty Name="land" Relationship="Self.FK__zakaz__land_id__1CF15040" FromRole="zakaz" ToRole="land" />
+    <NavigationProperty Name="work" Relationship="Self.zakaz_work" FromRole="zakaz" ToRole="work" />
+  </EntityType>
+  <Association Name="FK__land__customer_i__145C0A3F">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="land" Type="Self.land" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="land">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz__designer___1BFD2C07">
+    <End Role="designer" Type="Self.designer" Multiplicity="1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="designer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="designer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz__land_id__1CF15040">
+    <End Role="land" Type="Self.land" Multiplicity="1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="land">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="land_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="land_difficulties">
+    <End Role="difficulties" Type="Self.difficulties" Multiplicity="*" />
+    <End Role="land" Type="Self.land" Multiplicity="*" />
+  </Association>
+  <Association Name="zakaz_work">
+    <End Role="work" Type="Self.work" Multiplicity="*" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="LD_kursEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customer" EntityType="Self.customer" />
+    <EntitySet Name="designer" EntityType="Self.designer" />
+    <EntitySet Name="difficulties" EntityType="Self.difficulties" />
+    <EntitySet Name="land" EntityType="Self.land" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="work" EntityType="Self.work" />
+    <EntitySet Name="zakaz" EntityType="Self.zakaz" />
+    <AssociationSet Name="FK__land__customer_i__145C0A3F" Association="Self.FK__land__customer_i__145C0A3F">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="land" EntitySet="land" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz__designer___1BFD2C07" Association="Self.FK__zakaz__designer___1BFD2C07">
+      <End Role="designer" EntitySet="designer" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz__land_id__1CF15040" Association="Self.FK__zakaz__land_id__1CF15040">
+      <End Role="land" EntitySet="land" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="land_difficulties" Association="Self.land_difficulties">
+      <End Role="difficulties" EntitySet="difficulties" />
+      <End Role="land" EntitySet="land" />
+    </AssociationSet>
+    <AssociationSet Name="zakaz_work" Association="Self.zakaz_work">
+      <End Role="work" EntitySet="work" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

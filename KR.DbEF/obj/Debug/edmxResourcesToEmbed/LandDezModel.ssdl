@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="designer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="difficulties">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subj" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="land">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="size" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "LD_kurs.dbo.land_difficulties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="land_difficulties">
+    <Key>
+      <PropertyRef Name="difficulties_id" />
+      <PropertyRef Name="land_id" />
+    </Key>
+    <Property Name="difficulties_id" Type="int" Nullable="false" />
+    <Property Name="land_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="work">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typee" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="countt" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="zakaz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="designer_id" Type="int" Nullable="false" />
+    <Property Name="land_id" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="start_time" Type="date" Nullable="false" />
+    <Property Name="end_time" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "LD_kurs.dbo.zakaz_work" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="zakaz_work">
+    <Key>
+      <PropertyRef Name="zakazs_id" />
+      <PropertyRef Name="work_id" />
+    </Key>
+    <Property Name="zakazs_id" Type="int" Nullable="false" />
+    <Property Name="work_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__land__customer_i__145C0A3F">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="land" Type="Self.land" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="land">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__land_diff__diffi__182C9B23">
+    <End Role="difficulties" Type="Self.difficulties" Multiplicity="1" />
+    <End Role="land_difficulties" Type="Self.land_difficulties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="difficulties">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="land_difficulties">
+        <PropertyRef Name="difficulties_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__land_diff__land___1920BF5C">
+    <End Role="land" Type="Self.land" Multiplicity="1" />
+    <End Role="land_difficulties" Type="Self.land_difficulties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="land">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="land_difficulties">
+        <PropertyRef Name="land_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz__designer___1BFD2C07">
+    <End Role="designer" Type="Self.designer" Multiplicity="1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="designer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="designer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz__land_id__1CF15040">
+    <End Role="land" Type="Self.land" Multiplicity="1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="land">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="land_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz_wor__work___21B6055D">
+    <End Role="work" Type="Self.work" Multiplicity="1" />
+    <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="work">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz_work">
+        <PropertyRef Name="work_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zakaz_wor__zakaz__20C1E124">
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
+    <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="zakaz_work">
+        <PropertyRef Name="zakazs_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище LD_kursModelContainer">
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="designer" EntityType="Self.designer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="difficulties" EntityType="Self.difficulties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="land" EntityType="Self.land" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="work" EntityType="Self.work" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="land_difficulties" EntityType="Self.land_difficulties" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [land_difficulties].[difficulties_id] AS [difficulties_id], 
+    [land_difficulties].[land_id] AS [land_id]
+    FROM [dbo].[land_difficulties] AS [land_difficulties]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [zakaz_work].[zakazs_id] AS [zakazs_id], 
+    [zakaz_work].[work_id] AS [work_id]
+    FROM [dbo].[zakaz_work] AS [zakaz_work]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__land__customer_i__145C0A3F" Association="Self.FK__land__customer_i__145C0A3F">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="land" EntitySet="land" />
+    </AssociationSet>
+    <AssociationSet Name="FK__land_diff__diffi__182C9B23" Association="Self.FK__land_diff__diffi__182C9B23">
+      <End Role="difficulties" EntitySet="difficulties" />
+      <End Role="land_difficulties" EntitySet="land_difficulties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__land_diff__land___1920BF5C" Association="Self.FK__land_diff__land___1920BF5C">
+      <End Role="land" EntitySet="land" />
+      <End Role="land_difficulties" EntitySet="land_difficulties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz__designer___1BFD2C07" Association="Self.FK__zakaz__designer___1BFD2C07">
+      <End Role="designer" EntitySet="designer" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz__land_id__1CF15040" Association="Self.FK__zakaz__land_id__1CF15040">
+      <End Role="land" EntitySet="land" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz_wor__work___21B6055D" Association="Self.FK__zakaz_wor__work___21B6055D">
+      <End Role="work" EntitySet="work" />
+      <End Role="zakaz_work" EntitySet="zakaz_work" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zakaz_wor__zakaz__20C1E124" Association="Self.FK__zakaz_wor__zakaz__20C1E124">
+      <End Role="zakaz" EntitySet="zakaz" />
+      <End Role="zakaz_work" EntitySet="zakaz_work" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
