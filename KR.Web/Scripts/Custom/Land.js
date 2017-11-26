@@ -1,7 +1,7 @@
 ﻿$(".delete").click(AjaxDelete);
 
 function AjaxDelete(event) {
-    var url = "/Customer/Delete"
+    var url = "/Land/Delete"
     var Id = event.target.id.split("_")[1];
     var data = {
         id: Id

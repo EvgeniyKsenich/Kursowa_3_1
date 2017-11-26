@@ -32,6 +32,9 @@ namespace KR.Web
 
             bundles.Add(new ScriptBundle("~/bundles/Designer").Include(
                      "~/Scripts/Custom/Designer.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Land").Include(
+                     "~/Scripts/Custom/Land.js"));
         }
     }
 }

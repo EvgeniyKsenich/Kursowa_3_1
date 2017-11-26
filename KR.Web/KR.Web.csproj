@@ -170,8 +170,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DesignerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +195,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\Land.js" />
     <Content Include="Scripts\Custom\Designer.js" />
     <Content Include="Scripts\Custom\Customer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -217,12 +220,15 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Customer.cshtml" />
-    <Content Include="Views\Home\AddCustomer.cshtml" />
-    <Content Include="Views\Home\EditCustomer.cshtml" />
     <Content Include="Views\Designer\Index.cshtml" />
     <Content Include="Views\Designer\Edit.cshtml" />
     <Content Include="Views\Designer\Add.cshtml" />
+    <Content Include="Views\Customer\Add.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Info.cshtml" />
+    <Content Include="Views\Land\Edit.cshtml" />
+    <Content Include="Views\Land\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

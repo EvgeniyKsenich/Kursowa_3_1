@@ -77,9 +77,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CustomerInfo.cs" />
+    <Compile Include="Entities\Land.cs" />
     <Compile Include="Entities\Designer.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ILand.cs" />
     <Compile Include="Repositories\ICustomer.cs" />
     <Compile Include="Repositories\IDesigner.cs" />
   </ItemGroup>

@@ -16,6 +16,12 @@ namespace KR.Web.Helpers
 
                 config.CreateMap<Designer, designer>().ForMember(x => x.zakaz, opt => opt.Ignore());
                 config.CreateMap<List<Designer>, List<designer>>();
+
+                config.CreateMap<Land, land>()
+                                            .ForMember(x => x.customer, opt => opt.Ignore())
+                                            .ForMember(x => x.zakaz, opt => opt.Ignore())
+                                            .ForMember(x => x.difficulties, opt => opt.Ignore());
+                config.CreateMap<List<Land>, List<land>>();
             });
         }
     }

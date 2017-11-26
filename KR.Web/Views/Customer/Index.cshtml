@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<KR.Business.Entities.Customer>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Customer";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+        <h2>Customer</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Add")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    <span>Name</span>
+                </th>
+                <th>
+                    <span>Surname</span>
+                </th>
+                <th>
+                    <span>Age</span>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr id="row_@item.id">
+                    <td>
+                        @Html.ActionLink(item.name, "Info", new { id = item.id })
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.surname, "Info", new { id = item.id })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.age)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    </div>
+</div>
+@Scripts.Render("~/bundles/Customer")

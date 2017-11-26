@@ -1,0 +1,77 @@
+﻿@model KR.Business.Entities.CustomerInfo
+
+@{
+    ViewBag.Title = "Info";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Info</h2>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Customer.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Customer.surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Customer.age)
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.Customer.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Customer.surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Customer.age)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="landList">
+            @Html.ActionLink("Add land", "Add", "Land", new { id = Model.Customer.id }, null)
+            @if (Model.Lands.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>Name</span>
+                            </th>
+                            <th>
+                                <span>Size</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Lands)
+                {
+                        <tr id="row_@item.id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.size)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Land", new { id = item.id }, null) |
+                                @Html.ActionLink("Delete", "Delete", "Land", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Customer.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/Land")
