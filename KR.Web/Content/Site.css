@@ -28,3 +28,7 @@ div.dropdown {
     float: right;
     padding-top: 8px;
 }
+
+.innerTR td {
+    border-top: none !important;
+}

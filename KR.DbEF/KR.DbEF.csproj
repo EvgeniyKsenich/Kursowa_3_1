@@ -181,6 +181,8 @@
     <Compile Include="Repositories\LandRepositories.cs" />
     <Compile Include="Repositories\DesignerRepositories.cs" />
     <Compile Include="Repositories\CustomerRepositories.cs" />
+    <Compile Include="Repositories\ZakazInfoRepositories.cs" />
+    <Compile Include="Repositories\ZakazRepositories.cs" />
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>

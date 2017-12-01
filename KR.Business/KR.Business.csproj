@@ -83,8 +83,10 @@
     <Compile Include="Entities\Designer.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Work.cs" />
+    <Compile Include="Entities\ZakazInfo.cs" />
     <Compile Include="Entities\Zakaz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IZakaz.cs" />
     <Compile Include="Repositories\ILand.cs" />
     <Compile Include="Repositories\ICustomer.cs" />
     <Compile Include="Repositories\IDesigner.cs" />

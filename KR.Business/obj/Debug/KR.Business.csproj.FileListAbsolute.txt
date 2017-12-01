@@ -63,6 +63,5 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\KR.Business.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\KR.Business.pdb
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.csprojResolveAssemblyReference.cache
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.pdb

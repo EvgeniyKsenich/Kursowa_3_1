@@ -84,7 +84,6 @@ namespace KR.DbEF.Repositories
                 {
                     db.Entry(user.land).State = EntityState.Deleted;
                     db.Entry(Mapper.Map<customer>(user)).State = EntityState.Deleted;
-                    //db.customer.Remove(user);
                     db.SaveChanges();
                 }
             }
