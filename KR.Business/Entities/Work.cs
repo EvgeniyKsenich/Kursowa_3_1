@@ -5,18 +5,18 @@ using System.Web;
 
 namespace KR.Business.Entities
 {
-    public class Designer
+    public class Work
     {
-        //public Designer()
+        //public Work()
         //{
         //    this.zakaz = new HashSet<Zakaz>();
         //}
 
         public int id { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public int age { get; set; }
+        public string typee { get; set; }
+        public int countt { get; set; }
+        public int price { get; set; }
 
-       // public virtual ICollection<Zakaz> zakaz { get; set; }
+        //public virtual ICollection<Zakaz> zakaz { get; set; }
     }
 }

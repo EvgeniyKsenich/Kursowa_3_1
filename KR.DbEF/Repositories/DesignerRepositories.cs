@@ -14,11 +14,13 @@ namespace KR.DbEF.Repositories
         public IEnumerable<Designer> GetList()
         {
             List<designer> user;
+            List<Designer> List;
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 user = db.designer.ToList<designer>();
+                List = Mapper.Map<List<Designer>>(user.OrderByDescending(x => x.id));
             }
-            return Mapper.Map<List<Designer>>(user.OrderByDescending(x => x.id));
+            return List;
         }
 
         public void Save(Designer user)

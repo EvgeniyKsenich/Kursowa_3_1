@@ -194,8 +194,8 @@
   <ItemGroup>
     <Content Include="LandDezModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LandDezModel.Context.cs</LastGenOutput>
       <DependentUpon>LandDezModel.edmx</DependentUpon>
+      <LastGenOutput>LandDezModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="LandDezModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -220,6 +220,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="LandDezModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LandDezModel.Designer.cs</LastGenOutput>
@@ -229,9 +232,6 @@
     <Content Include="LandDezModel.edmx.diagram">
       <DependentUpon>LandDezModel.edmx</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

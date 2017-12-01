@@ -14,11 +14,13 @@ namespace KR.DbEF.Repositories
         public IEnumerable<Land> GetList()
         {
             List<land> Lands;
+            List<Land> List;
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 Lands = db.land.ToList<land>();
+                List = Mapper.Map<List<Land>>(Lands.OrderByDescending(x => x.id));
             }
-            return Mapper.Map<List<Land>>(Lands.OrderByDescending(x => x.id));
+            return List;
         }
 
         public IEnumerable<Land> GetListForUser(int customerId)

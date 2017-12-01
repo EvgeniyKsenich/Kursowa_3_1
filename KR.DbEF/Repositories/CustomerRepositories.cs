@@ -14,11 +14,13 @@ namespace KR.DbEF.Repositories
         public IEnumerable<Customer> GetList()
         {
             List<customer> customer;
+            List<Customer> Customer;
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 customer = db.customer.ToList<customer>();
+                Customer = Mapper.Map<List<Customer>>(customer.OrderByDescending(x => x.id));
             }
-            return Mapper.Map<List<Customer>>(customer.OrderByDescending(x => x.id));
+            return Customer;
         }
 
         public void Save(Customer _customer)
@@ -62,19 +64,50 @@ namespace KR.DbEF.Repositories
             }
         }
 
+        public customer GetcustomerById(int id)
+        {
+            customer user;
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                user = db.customer.SingleOrDefault(c => c.id == id);
+                user.land = user.land.ToList();
+            }
+            return user;
+        }
+
         public Customer Delete(int id)
         {
-            var user = GetbyId(id);
-            if (user != null)
+            var user  = GetcustomerById(id);
+            using (LD_kursEntities db = new LD_kursEntities())
             {
-                using (LD_kursEntities db = new LD_kursEntities())
+                if (user != null)
                 {
-                    //db.items.Remove(user);
+                    db.Entry(user.land).State = EntityState.Deleted;
                     db.Entry(Mapper.Map<customer>(user)).State = EntityState.Deleted;
+                    //db.customer.Remove(user);
                     db.SaveChanges();
                 }
             }
-            return user;
+            return Mapper.Map<Customer>(user);
+        }
+
+       //test
+        public Customer Del(int id)
+        {
+            var user = GetcustomerById(id);
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                if (user != null)
+                {
+                    foreach (var land in user.land.ToList())
+                    {
+                        db.Entry(land).State = EntityState.Deleted;
+                    }
+                    db.Entry(user).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
+            }
+            return Mapper.Map<Customer>(user);
         }
 
     }

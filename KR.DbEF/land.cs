@@ -18,18 +18,16 @@ namespace KR.DbEF
         public land()
         {
             this.zakaz = new HashSet<zakaz>();
-            this.difficulties = new HashSet<difficulties>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
         public int customer_id { get; set; }
         public int size { get; set; }
+        public string addres { get; set; }
     
         public virtual customer customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zakaz> zakaz { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<difficulties> difficulties { get; set; }
     }
 }

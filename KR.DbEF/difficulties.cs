@@ -17,7 +17,7 @@ namespace KR.DbEF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public difficulties()
         {
-            this.land = new HashSet<land>();
+            this.zakaz = new HashSet<zakaz>();
         }
     
         public int id { get; set; }
@@ -25,6 +25,6 @@ namespace KR.DbEF
         public int price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<land> land { get; set; }
+        public virtual ICollection<zakaz> zakaz { get; set; }
     }
 }

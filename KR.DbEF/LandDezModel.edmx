@@ -39,16 +39,7 @@
           <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="size" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "LD_kurs.dbo.land_difficulties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="land_difficulties">
-          <Key>
-            <PropertyRef Name="difficulties_id" />
-            <PropertyRef Name="land_id" />
-          </Key>
-          <Property Name="difficulties_id" Type="int" Nullable="false" />
-          <Property Name="land_id" Type="int" Nullable="false" />
+          <Property Name="addres" Type="varchar" MaxLength="70" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -81,6 +72,16 @@
           <Property Name="end_time" Type="date" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "LD_kurs.dbo.zakaz_difficulties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="zakaz_difficulties">
+          <Key>
+            <PropertyRef Name="difficulties_id" />
+            <PropertyRef Name="zakaz_id" />
+          </Key>
+          <Property Name="difficulties_id" Type="int" Nullable="false" />
+          <Property Name="zakaz_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "LD_kurs.dbo.zakaz_work" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="zakaz_work">
           <Key>
@@ -99,30 +100,6 @@
             </Principal>
             <Dependent Role="land">
               <PropertyRef Name="customer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__land_diff__diffi__182C9B23">
-          <End Role="difficulties" Type="Self.difficulties" Multiplicity="1" />
-          <End Role="land_difficulties" Type="Self.land_difficulties" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="difficulties">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="land_difficulties">
-              <PropertyRef Name="difficulties_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__land_diff__land___1920BF5C">
-          <End Role="land" Type="Self.land" Multiplicity="1" />
-          <End Role="land_difficulties" Type="Self.land_difficulties" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="land">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="land_difficulties">
-              <PropertyRef Name="land_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -147,6 +124,30 @@
             </Principal>
             <Dependent Role="zakaz">
               <PropertyRef Name="land_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zakaz_dif__diffi__48CFD27E">
+          <End Role="difficulties" Type="Self.difficulties" Multiplicity="1" />
+          <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="difficulties">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz_difficulties">
+              <PropertyRef Name="difficulties_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zakaz_dif__zakaz__49C3F6B7">
+          <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
+          <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zakaz">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zakaz_difficulties">
+              <PropertyRef Name="zakaz_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,11 +183,11 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="work" EntityType="Self.work" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="land_difficulties" EntityType="Self.land_difficulties" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="zakaz_difficulties" EntityType="Self.zakaz_difficulties" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [land_difficulties].[difficulties_id] AS [difficulties_id], 
-    [land_difficulties].[land_id] AS [land_id]
-    FROM [dbo].[land_difficulties] AS [land_difficulties]</DefiningQuery>
+    [zakaz_difficulties].[difficulties_id] AS [difficulties_id], 
+    [zakaz_difficulties].[zakaz_id] AS [zakaz_id]
+    FROM [dbo].[zakaz_difficulties] AS [zakaz_difficulties]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -198,14 +199,6 @@
             <End Role="customer" EntitySet="customer" />
             <End Role="land" EntitySet="land" />
           </AssociationSet>
-          <AssociationSet Name="FK__land_diff__diffi__182C9B23" Association="Self.FK__land_diff__diffi__182C9B23">
-            <End Role="difficulties" EntitySet="difficulties" />
-            <End Role="land_difficulties" EntitySet="land_difficulties" />
-          </AssociationSet>
-          <AssociationSet Name="FK__land_diff__land___1920BF5C" Association="Self.FK__land_diff__land___1920BF5C">
-            <End Role="land" EntitySet="land" />
-            <End Role="land_difficulties" EntitySet="land_difficulties" />
-          </AssociationSet>
           <AssociationSet Name="FK__zakaz__designer___1BFD2C07" Association="Self.FK__zakaz__designer___1BFD2C07">
             <End Role="designer" EntitySet="designer" />
             <End Role="zakaz" EntitySet="zakaz" />
@@ -213,6 +206,14 @@
           <AssociationSet Name="FK__zakaz__land_id__1CF15040" Association="Self.FK__zakaz__land_id__1CF15040">
             <End Role="land" EntitySet="land" />
             <End Role="zakaz" EntitySet="zakaz" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zakaz_dif__diffi__48CFD27E" Association="Self.FK__zakaz_dif__diffi__48CFD27E">
+            <End Role="difficulties" EntitySet="difficulties" />
+            <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zakaz_dif__zakaz__49C3F6B7" Association="Self.FK__zakaz_dif__zakaz__49C3F6B7">
+            <End Role="zakaz" EntitySet="zakaz" />
+            <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
           </AssociationSet>
           <AssociationSet Name="FK__zakaz_wor__work___21B6055D" Association="Self.FK__zakaz_wor__work___21B6055D">
             <End Role="work" EntitySet="work" />
@@ -255,7 +256,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="subj" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="land" Relationship="Self.land_difficulties" FromRole="difficulties" ToRole="land" />
+          <NavigationProperty Name="zakaz" Relationship="Self.zakaz_difficulties" FromRole="difficulties" ToRole="zakaz" />
         </EntityType>
         <EntityType Name="land">
           <Key>
@@ -265,9 +266,9 @@
           <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="customer_id" Type="Int32" Nullable="false" />
           <Property Name="size" Type="Int32" Nullable="false" />
+          <Property Name="addres" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="customer" Relationship="Self.FK__land__customer_i__145C0A3F" FromRole="land" ToRole="customer" />
           <NavigationProperty Name="zakaz" Relationship="Self.FK__zakaz__land_id__1CF15040" FromRole="land" ToRole="zakaz" />
-          <NavigationProperty Name="difficulties" Relationship="Self.land_difficulties" FromRole="land" ToRole="difficulties" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -301,6 +302,7 @@
           <Property Name="end_time" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="designer" Relationship="Self.FK__zakaz__designer___1BFD2C07" FromRole="zakaz" ToRole="designer" />
           <NavigationProperty Name="land" Relationship="Self.FK__zakaz__land_id__1CF15040" FromRole="zakaz" ToRole="land" />
+          <NavigationProperty Name="difficulties" Relationship="Self.zakaz_difficulties" FromRole="zakaz" ToRole="difficulties" />
           <NavigationProperty Name="work" Relationship="Self.zakaz_work" FromRole="zakaz" ToRole="work" />
         </EntityType>
         <Association Name="FK__land__customer_i__145C0A3F">
@@ -339,9 +341,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="land_difficulties">
+        <Association Name="zakaz_difficulties">
           <End Role="difficulties" Type="Self.difficulties" Multiplicity="*" />
-          <End Role="land" Type="Self.land" Multiplicity="*" />
+          <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
         </Association>
         <Association Name="zakaz_work">
           <End Role="work" Type="Self.work" Multiplicity="*" />
@@ -367,9 +369,9 @@
             <End Role="land" EntitySet="land" />
             <End Role="zakaz" EntitySet="zakaz" />
           </AssociationSet>
-          <AssociationSet Name="land_difficulties" Association="Self.land_difficulties">
+          <AssociationSet Name="zakaz_difficulties" Association="Self.zakaz_difficulties">
             <End Role="difficulties" EntitySet="difficulties" />
-            <End Role="land" EntitySet="land" />
+            <End Role="zakaz" EntitySet="zakaz" />
           </AssociationSet>
           <AssociationSet Name="zakaz_work" Association="Self.zakaz_work">
             <End Role="work" EntitySet="work" />
@@ -418,6 +420,7 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="addres" ColumnName="addres" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -454,12 +457,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="land_difficulties" TypeName="LD_kursModel.land_difficulties" StoreEntitySet="land_difficulties">
+          <AssociationSetMapping Name="zakaz_difficulties" TypeName="LD_kursModel.zakaz_difficulties" StoreEntitySet="zakaz_difficulties">
             <EndProperty Name="difficulties">
               <ScalarProperty Name="id" ColumnName="difficulties_id" />
             </EndProperty>
-            <EndProperty Name="land">
-              <ScalarProperty Name="id" ColumnName="land_id" />
+            <EndProperty Name="zakaz">
+              <ScalarProperty Name="id" ColumnName="zakaz_id" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="zakaz_work" TypeName="LD_kursModel.zakaz_work" StoreEntitySet="zakaz_work">
