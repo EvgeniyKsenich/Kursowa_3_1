@@ -36,5 +36,14 @@ namespace KR.Web.Controllers
             return View(zakaz);
         }
 
+        public ActionResult Add(int id)
+        {
+            var zakaz = new Zakaz();
+            if (zakaz == null)
+                return RedirectToAction("Index");
+
+            return View(zakaz);
+        }
+
     }
 }

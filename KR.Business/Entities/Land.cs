@@ -11,26 +11,22 @@ namespace KR.Business.Entities
 {
     public class Land
     {
-        //public Land()
-        //{
-        //    this.zakaz = new HashSet<Zakaz>();
-        //}
-
         [Editable(false)]
         public int id { get; set; }
 
         [MaxLength(36)]
+        [DisplayName("Name")]
         public string name { get; set; }
 
         [Editable(false)]
         public int customer_id { get; set; }
 
+        [Range(0,100000)]
+        [DisplayName("Size")]
         public int size { get; set; }
 
         [MaxLength(70)]
+        [DisplayName("Address")]
         public string addres { get; set; }
-
-        //public virtual Customer customer { get; set; }
-        //public virtual ICollection<Zakaz> zakaz { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace KR.DbEF.Repositories
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 zakaz = db.zakaz.ToList<zakaz>();
-                foreach(var item in zakaz)
+                
+                foreach (var item in zakaz)
                 {
                     InfoList.Add(new ZakazInfo()
                     {
@@ -25,8 +26,8 @@ namespace KR.DbEF.Repositories
                         land = Mapper.Map<Land>(item.land),
                         customer = Mapper.Map<Customer>(item.land.customer),
                         designer = Mapper.Map<Designer>(item.designer),
-                        difficults = Mapper.Map<Difficulties>(null),
-                        work = Mapper.Map<Work>(null)
+                        difficults = Mapper.Map<List<Difficulties>>(item.difficulties),
+                        work = Mapper.Map<List<Work>>(item.work)
                     });
                 }  
             }
@@ -45,8 +46,8 @@ namespace KR.DbEF.Repositories
                     land = Mapper.Map<Land>(zakaz.land),
                     customer = Mapper.Map<Customer>(zakaz.land.customer),
                     designer = Mapper.Map<Designer>(zakaz.designer),
-                    difficults = Mapper.Map<Difficulties>(null),
-                    work = Mapper.Map<Work>(null)
+                    difficults = Mapper.Map<List<Difficulties>>(zakaz.difficulties),
+                    work = Mapper.Map<List<Work>>(zakaz.work)
                 };
             }
             return ZkazInfo;

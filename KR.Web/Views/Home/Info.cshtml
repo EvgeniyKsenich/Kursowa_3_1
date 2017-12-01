@@ -5,8 +5,6 @@
 }
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <h2>Info</h2>
-
         <div>
             <dl class="dl-horizontal"></dl>
         </div>
@@ -45,22 +43,88 @@
             <tr>
                 <td></td>
                 <td>
-                    @Html.ActionLink(Model.land.name, "Info", "Land", new { id = Model.customer.id }, null)
+                    @Html.ActionLink(Model.land.name, "Info", "Land", new { id = Model.land.id }, null)
                 </td>
                 <td>
-                    @Html.ActionLink(Model.land.addres, "Info", "Land", new { id = Model.customer.id }, null)
+                    @Html.ActionLink(Model.land.addres, "Info", "Land", new { id = Model.land.id }, null)
                 </td>
             </tr>
         </table>
+        <div class="ZakazPrice">
+            @Html.LabelFor(modelItem => Model.zakaz.price)<span>: </span>
+            @Html.DisplayFor(modelItem => Model.zakaz.price)
+            <br />
+            @if (Model.work.Count != 0)
+            {
+                <div class="ZakazWork">
+
+                    @Html.LabelFor(modelItem => Model.work)<span>: </span>
+                    @Html.ActionLink("Add new", "Add", "Work", new { id = Model.zakaz.id }, new { @class="addNewWork"})
+                    <table class="table">
+                        <tr>
+                            <th>@Html.LabelFor(modelItem => Model.work[0].countt)</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.work)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.countt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.typee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                                <td>
+                                    <span>@(item.countt * item.price)</span>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Work", new { id = item.id }, null) |
+                                    @Html.ActionLink("Edit", "Delete", "Work", new { id = item.id }, null)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+            @if (Model.difficults.Count != 0)
+            {
+                <div class="ZakazDifficults">
+                    @Html.LabelFor(modelItem => Model.difficults)<span>: </span>
+                    @Html.ActionLink("Add new", "Add", "Difficults", new { id = Model.zakaz.id }, new { @class = "addNewDifficults" })
+                    <table class="table">
+                        <tr>
+                            <th>@Html.LabelFor(modelItem => Model.difficults[0].subj)</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                        </tr>
+                        @foreach (var item in Model.difficults)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subj)
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+        </div>
         <div class="ZakazDate">
-                <span>Start Date:</span>
-                @Html.DisplayFor(modelItem => Model.zakaz.start_time)
-                <br />
-                <span>End Date:</span>
-                @Html.DisplayFor(modelItem => Model.zakaz.end_time)
+            <span>Start Date:</span>
+            @Html.DisplayFor(modelItem => Model.zakaz.start_time)
+            <br />
+            <span>End Date:</span>
+            @Html.DisplayFor(modelItem => Model.zakaz.end_time)
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { id = Model.zakaz.id }) |
             @Html.ActionLink("Back to List", "Index")
         </p>
     </div>

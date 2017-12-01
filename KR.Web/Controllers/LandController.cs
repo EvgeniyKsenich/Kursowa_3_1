@@ -49,7 +49,7 @@ namespace KR.Web.Controllers
         {
             var land = LandRepositories.GetbyId(id);
             if (land == null)
-                return RedirectToAction("Info", "Customer", new { id = land.customer_id });
+                return RedirectToAction("Index", "Home", null);
             return View(land);
         }
 
@@ -63,6 +63,15 @@ namespace KR.Web.Controllers
                 return RedirectToAction("Info", "Customer", new { id= land.customer_id});
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Info(int id)
+        {
+            var land = LandRepositories.GetbyId(id);
+            if(land ==null)
+                return RedirectToAction("Index", "Home", null);
+            return View(land);
         }
 
         [HttpPost]

@@ -20,10 +20,10 @@ namespace KR.Business.Entities
         public Customer customer { get; set; }
 
         [DisplayName("Work")]
-        public Work work { get; set; }
+        public List<Work> work { get; set; }
 
         [DisplayName("Difficults")]
-        public Difficulties difficults { get; set; }
+        public List<Difficulties> difficults { get; set; }
 
         [DisplayName("Land")]
         public Land land { get; set; }
