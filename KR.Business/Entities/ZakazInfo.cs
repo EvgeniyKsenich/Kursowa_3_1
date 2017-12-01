@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Web;
-
+using System.Web.Security;
 namespace KR.Business.Entities
 {
     public class ZakazInfo
     {
-        public Zakaz zakaz;
+        [DisplayName("Order")]
+        public Zakaz zakaz { get; set; }
 
-        public Designer designer;
+        [DisplayName("Designer")]
+        public Designer designer { get; set; }
 
-        public Customer customer;
+        [DisplayName("Customer")]
+        public Customer customer { get; set; }
 
-        public Work work;
+        [DisplayName("Work")]
+        public Work work { get; set; }
 
-        public Difficulties difficults;
+        [DisplayName("Difficults")]
+        public Difficulties difficults { get; set; }
 
-        public Land land;
+        [DisplayName("Land")]
+        public Land land { get; set; }
     }
 }

@@ -29,7 +29,11 @@ namespace KR.Web.Controllers
 
         public ActionResult Info(int id)
         {
-            return View();
+            var zakaz = ZakazRepositories.GetbyId(id);
+            if(zakaz == null)
+                return RedirectToAction("Index");
+            
+            return View(zakaz);
         }
 
     }

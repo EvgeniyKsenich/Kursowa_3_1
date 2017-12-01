@@ -44,9 +44,9 @@
                         @Html.DisplayFor(modelItem => item.zakaz.price)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.zakaz.id }) |
+                        @Html.ActionLink("Details", "Info", new {  id=item.zakaz.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id })
                     </td>
                 </tr>
                 <tr class="innerTR">

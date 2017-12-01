@@ -1,0 +1,67 @@
+﻿@model KR.Business.Entities.ZakazInfo
+
+@{
+    ViewBag.Title = "Info";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Info</h2>
+
+        <div>
+            <dl class="dl-horizontal"></dl>
+        </div>
+        <table>
+            <tr class="ZakazDesigner">
+                <td>
+                    @Html.LabelFor(modelItem => Model.designer)<span>: </span>
+                </td>
+                <td>
+                    @Html.ActionLink(Model.designer.name, "Info", "Designer", new { id = Model.designer.id }, null)
+                    @Html.ActionLink(Model.designer.surname, "Info", "Designer", new { id = Model.designer.id }, null)
+                </td>
+            <tr />
+
+            <tr class="ZakazCustomer">
+                <td>
+                    @Html.LabelFor(modelItem => Model.customer)<span>: </span>
+                </td>
+                <td>
+                    @Html.ActionLink(Model.customer.name, "Info", "Customer", new { id = Model.customer.id }, null)
+                    @Html.ActionLink(Model.customer.surname, "Info", "Customer", new { id = Model.customer.id }, null)
+                <td>
+            </tr>
+
+            <tr class="ZakazLand">
+                <td>
+                    @Html.LabelFor(modelItem => Model.land)
+                </td>
+                <td>
+                    @Html.LabelFor(modelItem => Model.land.name)
+                </td>
+                <td>
+                    @Html.LabelFor(modelItem => Model.land.addres)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ActionLink(Model.land.name, "Info", "Land", new { id = Model.customer.id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(Model.land.addres, "Info", "Land", new { id = Model.customer.id }, null)
+                </td>
+            </tr>
+        </table>
+        <div class="ZakazDate">
+                <span>Start Date:</span>
+                @Html.DisplayFor(modelItem => Model.zakaz.start_time)
+                <br />
+                <span>End Date:</span>
+                @Html.DisplayFor(modelItem => Model.zakaz.end_time)
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
