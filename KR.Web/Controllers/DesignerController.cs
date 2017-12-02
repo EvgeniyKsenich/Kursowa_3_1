@@ -82,5 +82,13 @@ namespace KR.Web.Controllers
             }
             return Json(id);
         }
+
+        public ActionResult Info(int id)
+        {
+            var user = _Repositories.GetbyId(id);
+            if (user == null)
+                return RedirectToAction("Index");
+            return View(user);
+        }
     }
 }

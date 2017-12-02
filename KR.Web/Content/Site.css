@@ -42,3 +42,8 @@ div.dropdown {
 .addNewDifficults {
     float: right;
 }
+
+.top-custom {
+    position: relative;
+    top: -50px;
+}

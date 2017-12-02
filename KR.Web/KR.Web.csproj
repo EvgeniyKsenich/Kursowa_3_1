@@ -232,6 +232,7 @@
     <Content Include="Views\Home\Info.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Land\Info.cshtml" />
+    <Content Include="Views\Designer\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

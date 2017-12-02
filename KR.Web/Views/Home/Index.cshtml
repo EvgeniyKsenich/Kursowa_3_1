@@ -7,7 +7,19 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <h2>Index</h2>
-
+        <div class="top-custom">
+            <button class="btn btn-toolbar pull-right" type="button" data-toggle="">Search</button>
+            <div class="innerMenu">
+                <div class="inner">
+                    <span>Designer</span>
+                    <br />
+                    <span>Name</span>
+                    @Html.Editor("DesignerName")
+                    <span>Surname</span>
+                    @Html.Editor("DesigneSurname")
+                </div>
+            </div>
+        </div>
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
@@ -23,7 +35,7 @@
                     <span>Price</span>
                 </th>
                 <th>
-                    
+
                 </th>
             </tr>
 
@@ -45,7 +57,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.zakaz.id }) |
-                        @Html.ActionLink("Details", "Info", new {  id=item.zakaz.id }) |
+                        @Html.ActionLink("Details", "Info", new { id = item.zakaz.id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id })
                     </td>
                 </tr>
