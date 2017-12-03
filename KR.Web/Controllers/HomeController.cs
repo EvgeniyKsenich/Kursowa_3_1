@@ -55,5 +55,14 @@ namespace KR.Web.Controllers
             return Json(id);
         }
 
+        public string Deletes(int id)
+        {
+            var zakaz = ZakazRepositories.Delete(id);
+            if (zakaz == null)
+                return (-1).ToString();
+
+            return (id).ToString();
+        }
+
     }
 }

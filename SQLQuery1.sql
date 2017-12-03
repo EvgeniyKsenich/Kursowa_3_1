@@ -75,9 +75,12 @@ CREATE TABLE  work (
 	PRIMARY KEY (id)
 );
 
+--drop table zakaz_work
+
 CREATE TABLE  zakaz_work (
     zakazs_id int NOT NULL,
-    work_id int NOT NULL,
+    work_id int NOT NULL ,
 	FOREIGN KEY (zakazs_id) REFERENCES zakaz(id),
-	FOREIGN KEY (work_id) REFERENCES work(id)
+	FOREIGN KEY (work_id) REFERENCES work(id),
+	primary key (zakazs_id, work_id)
 );

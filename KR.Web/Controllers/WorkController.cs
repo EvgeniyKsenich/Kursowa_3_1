@@ -14,7 +14,7 @@ namespace KR.Web.Controllers
         IWork<Work> WorkRepositories;
         public WorkController()
         {
-            WorkRepositories = new WorkRepositories();
+           // WorkRepositories = new WorkRepositories();
         }
 
         // GET: Work

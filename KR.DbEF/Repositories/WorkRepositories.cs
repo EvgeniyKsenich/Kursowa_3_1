@@ -7,7 +7,7 @@ using System.Web;
 
 namespace KR.DbEF.Repositories
 {
-    public class WorkRepositories : IWork<Work>
+    public class WorkRepositories //: IWork<Work>
     {
 
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="customer">
           <Key>
             <PropertyRef Name="id" />
@@ -81,8 +81,6 @@
           <Property Name="difficulties_id" Type="int" Nullable="false" />
           <Property Name="zakaz_id" Type="int" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "LD_kurs.dbo.zakaz_work" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="zakaz_work">
           <Key>
             <PropertyRef Name="zakazs_id" />
@@ -151,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__zakaz_wor__work___21B6055D">
+        <Association Name="FK__zakaz_wor__work___693CA210">
           <End Role="work" Type="Self.work" Multiplicity="1" />
           <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__zakaz_wor__zakaz__20C1E124">
+        <Association Name="FK__zakaz_wor__zakaz__68487DD7">
           <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
           <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
           <ReferentialConstraint>
@@ -183,17 +181,12 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="work" EntityType="Self.work" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="zakaz_difficulties" EntityType="Self.zakaz_difficulties" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [zakaz_difficulties].[difficulties_id] AS [difficulties_id], 
     [zakaz_difficulties].[zakaz_id] AS [zakaz_id]
     FROM [dbo].[zakaz_difficulties] AS [zakaz_difficulties]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [zakaz_work].[zakazs_id] AS [zakazs_id], 
-    [zakaz_work].[work_id] AS [work_id]
-    FROM [dbo].[zakaz_work] AS [zakaz_work]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__land__customer_i__145C0A3F" Association="Self.FK__land__customer_i__145C0A3F">
             <End Role="customer" EntitySet="customer" />
@@ -215,17 +208,16 @@
             <End Role="zakaz" EntitySet="zakaz" />
             <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
           </AssociationSet>
-          <AssociationSet Name="FK__zakaz_wor__work___21B6055D" Association="Self.FK__zakaz_wor__work___21B6055D">
+          <AssociationSet Name="FK__zakaz_wor__work___693CA210" Association="Self.FK__zakaz_wor__work___693CA210">
             <End Role="work" EntitySet="work" />
             <End Role="zakaz_work" EntitySet="zakaz_work" />
           </AssociationSet>
-          <AssociationSet Name="FK__zakaz_wor__zakaz__20C1E124" Association="Self.FK__zakaz_wor__zakaz__20C1E124">
+          <AssociationSet Name="FK__zakaz_wor__zakaz__68487DD7" Association="Self.FK__zakaz_wor__zakaz__68487DD7">
             <End Role="zakaz" EntitySet="zakaz" />
             <End Role="zakaz_work" EntitySet="zakaz_work" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LD_kursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
