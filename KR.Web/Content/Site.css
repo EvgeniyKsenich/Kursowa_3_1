@@ -47,3 +47,7 @@ div.dropdown {
     position: relative;
     top: -50px;
 }
+
+.none {
+    display: none;
+}

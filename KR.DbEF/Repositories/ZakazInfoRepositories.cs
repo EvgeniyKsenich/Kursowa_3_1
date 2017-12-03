@@ -3,6 +3,7 @@ using KR.Business.Entities;
 using KR.Business.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -17,7 +18,7 @@ namespace KR.DbEF.Repositories
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 zakaz = db.zakaz.ToList<zakaz>();
-                
+
                 foreach (var item in zakaz)
                 {
                     InfoList.Add(new ZakazInfo()
@@ -29,7 +30,7 @@ namespace KR.DbEF.Repositories
                         difficults = Mapper.Map<List<Difficulties>>(item.difficulties),
                         work = Mapper.Map<List<Work>>(item.work)
                     });
-                }  
+                }
             }
             return InfoList;
         }
@@ -52,5 +53,34 @@ namespace KR.DbEF.Repositories
             }
             return ZkazInfo;
         }
+
+        public ZakazInfo Delete(int id)
+        {
+            ZakazInfo Info = GetbyId(id);
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                var zakaz = db.zakaz.SingleOrDefault(c => c.id == id);
+                if (zakaz == null)
+                    return null;
+                //using (var tran = db.Database.BeginTransaction())
+                //{
+
+                foreach (var item in zakaz.difficulties.ToList())
+                {
+                    //db.Entry(item).State = EntityState.Deleted;
+                }
+                foreach (var item in zakaz.work.ToList())
+                {
+                    //db.Entry(item).State = EntityState.Deleted;
+                }
+                db.Entry(zakaz).State = EntityState.Deleted;
+                db.SaveChanges();
+                //}
+                
+            }
+            return Info;
+        }
+
+
     }
 }

@@ -40,6 +40,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        
                         @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
                     </td>
                 </tr>

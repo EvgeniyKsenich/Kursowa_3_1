@@ -9,7 +9,7 @@
         <h2>Index</h2>
         <div class="top-custom">
             <button class="btn btn-toolbar pull-right" type="button" data-toggle="">Search</button>
-            <div class="innerMenu">
+            <div class="innerMenu none">
                 <div class="inner">
                     <span>Designer</span>
                     <br />
@@ -41,7 +41,7 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr id="row_1_@item.zakaz.id">
                     <td>
                         @*@Html.DisplayFor(modelItem => item.designer.name)*@
                         @Html.ActionLink(item.designer.name, "Info", "Designer", new { id = item.designer.id }, null)
@@ -58,10 +58,10 @@
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.zakaz.id }) |
                         @Html.ActionLink("Details", "Info", new { id = item.zakaz.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id }, new { @class = "delete", id = "item_" + item.zakaz.id })
                     </td>
                 </tr>
-                <tr class="innerTR">
+                <tr class="innerTR" id="row_2_@item.zakaz.id">
                     <td>
                         <span>Start Date:</span>
                         @Html.DisplayFor(modelItem => item.zakaz.start_time)
@@ -75,3 +75,5 @@
         </table>
     </div>
 </div>
+
+@Scripts.Render("~/bundles/Zakaz")

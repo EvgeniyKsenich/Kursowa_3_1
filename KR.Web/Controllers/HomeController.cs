@@ -27,6 +27,7 @@ namespace KR.Web.Controllers
             return View(List.ToPagedList(pageNumber, pageSize));
         }
 
+        [HttpGet]
         public ActionResult Info(int id)
         {
             var zakaz = ZakazRepositories.GetbyId(id);
@@ -36,13 +37,22 @@ namespace KR.Web.Controllers
             return View(zakaz);
         }
 
+        [HttpGet]
         public ActionResult Add(int id)
         {
             var zakaz = new Zakaz();
-            if (zakaz == null)
-                return RedirectToAction("Index");
-
+            zakaz.land_id = id;
             return View(zakaz);
+        }
+
+        //[HttpPost]
+        public JsonResult Delete(int id)
+        {
+            var zakaz = ZakazRepositories.Delete(id);
+            if (zakaz == null)
+                Json(-1);
+
+            return Json(id);
         }
 
     }

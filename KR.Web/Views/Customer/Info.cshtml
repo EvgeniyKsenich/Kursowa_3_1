@@ -69,6 +69,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", "Land", new { id = item.id }, null) |
+                                @Html.ActionLink("Details", "Info", "Land", new { id = item.id }, null) |
                                 @Html.ActionLink("Delete", "Delete", "Land", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
                             </td>
                         </tr>
