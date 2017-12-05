@@ -21,5 +21,25 @@ namespace KR.DbEF.Repositories
             }
             return Zakaz;
         }
+
+        public Zakaz Save(Zakaz _zakaz)
+        {
+            Zakaz returnZakaz;
+            if (_zakaz != null)
+            {
+                using (LD_kursEntities db = new LD_kursEntities())
+                {
+                    var zakaz = Mapper.Map<zakaz>(_zakaz);
+                    db.zakaz.Add(zakaz);
+                    db.SaveChanges();
+                    returnZakaz = Mapper.Map<Zakaz>(zakaz);
+                }
+            }
+            else
+            {
+                throw new Exception("Couldn't save null instance");
+            }
+            return returnZakaz;
+        }
     }
 }

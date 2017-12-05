@@ -20,9 +20,11 @@ namespace KR.Business.Entities
         public int price { get; set; }
 
         [DisplayName("Start time")]
+        [DataType(DataType.Date)]
         public System.DateTime start_time { get; set; }
 
         [DisplayName("End time")]
+        [DataType(DataType.Date)]
         public System.DateTime end_time { get; set; }
     }
 }

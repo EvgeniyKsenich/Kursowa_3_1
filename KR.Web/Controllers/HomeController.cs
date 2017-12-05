@@ -13,15 +13,18 @@ namespace KR.Web.Controllers
     public class HomeController : Controller
     {
         //IZakaz<Zakaz> ZakazRepositories;
-        ZakazInfoRepositories ZakazRepositories;
+        ZakazInfoRepositories ZakazInfoRepositories;
+        ZakazRepositories ZakazRepositories;
+
         public HomeController()
         {
-            ZakazRepositories = new ZakazInfoRepositories();
+            ZakazInfoRepositories = new ZakazInfoRepositories();
+            ZakazRepositories = new ZakazRepositories();
         }
 
         public ActionResult Index(int? page)
         {
-            var List = ZakazRepositories.GetList();
+            var List = ZakazInfoRepositories.GetList();
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(List.ToPagedList(pageNumber, pageSize));
@@ -30,10 +33,10 @@ namespace KR.Web.Controllers
         [HttpGet]
         public ActionResult Info(int id)
         {
-            var zakaz = ZakazRepositories.GetbyId(id);
-            if(zakaz == null)
+            var zakaz = ZakazInfoRepositories.GetbyId(id);
+            if (zakaz == null)
                 return RedirectToAction("Index");
-            
+
             return View(zakaz);
         }
 
@@ -45,10 +48,25 @@ namespace KR.Web.Controllers
             return View(zakaz);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(Zakaz zakaz)
+        {
+            if (ModelState.IsValid)
+            {
+                var _zakaz = ZakazRepositories.Save(zakaz);
+                if (_zakaz != null)
+                {
+                    return RedirectToAction("Info", new { id = zakaz.id });
+                }
+            }
+            return View(zakaz);
+        }
+
         //[HttpPost]
         public JsonResult Delete(int id)
         {
-            var zakaz = ZakazRepositories.Delete(id);
+            var zakaz = ZakazInfoRepositories.Delete(id);
             if (zakaz == null)
                 Json(-1);
 
@@ -57,7 +75,7 @@ namespace KR.Web.Controllers
 
         public string Deletes(int id)
         {
-            var zakaz = ZakazRepositories.Delete(id);
+            var zakaz = ZakazInfoRepositories.Delete(id);
             if (zakaz == null)
                 return (-1).ToString();
 
