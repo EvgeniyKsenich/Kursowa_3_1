@@ -181,7 +181,9 @@
     <Compile Include="Repositories\LandRepositories.cs" />
     <Compile Include="Repositories\DesignerRepositories.cs" />
     <Compile Include="Repositories\CustomerRepositories.cs" />
+    <Compile Include="Repositories\DifficultsRepositories.cs" />
     <Compile Include="Repositories\WorkRepositories.cs" />
+    <Compile Include="Repositories\SingleOrderRepositories.cs" />
     <Compile Include="Repositories\ZakazInfoRepositories.cs" />
     <Compile Include="Repositories\ZakazRepositories.cs" />
     <Compile Include="sysdiagrams.cs">

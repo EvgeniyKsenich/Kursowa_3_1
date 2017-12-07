@@ -62,7 +62,7 @@ namespace KR.Web.Controllers
             if (ModelState.IsValid)
             {
                 _Repositories.Edit(customer);
-                return RedirectToAction("Customer");
+                return RedirectToAction("Info", "Customer", new { id = customer.id});
             }
             
             return View();
@@ -74,15 +74,9 @@ namespace KR.Web.Controllers
             var customer = _Repositories.Delete(id);
             if (customer == null)
             {
-                Json(-1);
+                return Json(-1);
             }
             return Json(id);
-        }
-
-        public string Del(int id)
-        {
-            var customer = _Repositories.Del(id);
-            return(id.ToString());
         }
 
         [HttpGet]
@@ -97,14 +91,5 @@ namespace KR.Web.Controllers
 
             return View(Info);
         }
-
-        public string Adds()
-        {
-            var customer = new Customer() { name = "Ivan", surname = "Ivanov", age = 43};
-            _Repositories.Save(customer);
-            return "done";
-
-        }
-
     }
 }

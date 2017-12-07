@@ -66,8 +66,6 @@
     <Property Name="start_time" Type="date" Nullable="false" />
     <Property Name="end_time" Type="date" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "LD_kurs.dbo.zakaz_difficulties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="zakaz_difficulties">
     <Key>
       <PropertyRef Name="difficulties_id" />
@@ -120,7 +118,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__zakaz_dif__diffi__48CFD27E">
+  <Association Name="FK__zakaz_dif__diffi__73BA3083">
     <End Role="difficulties" Type="Self.difficulties" Multiplicity="1" />
     <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
     <ReferentialConstraint>
@@ -132,7 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__zakaz_dif__zakaz__49C3F6B7">
+  <Association Name="FK__zakaz_dif__zakaz__74AE54BC">
     <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
     <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,13 +174,8 @@
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="work" EntityType="Self.work" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zakaz_difficulties" EntityType="Self.zakaz_difficulties" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="zakaz_difficulties" EntityType="Self.zakaz_difficulties" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [zakaz_difficulties].[difficulties_id] AS [difficulties_id], 
-    [zakaz_difficulties].[zakaz_id] AS [zakaz_id]
-    FROM [dbo].[zakaz_difficulties] AS [zakaz_difficulties]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK__land__customer_i__145C0A3F" Association="Self.FK__land__customer_i__145C0A3F">
       <End Role="customer" EntitySet="customer" />
       <End Role="land" EntitySet="land" />
@@ -195,11 +188,11 @@
       <End Role="land" EntitySet="land" />
       <End Role="zakaz" EntitySet="zakaz" />
     </AssociationSet>
-    <AssociationSet Name="FK__zakaz_dif__diffi__48CFD27E" Association="Self.FK__zakaz_dif__diffi__48CFD27E">
+    <AssociationSet Name="FK__zakaz_dif__diffi__73BA3083" Association="Self.FK__zakaz_dif__diffi__73BA3083">
       <End Role="difficulties" EntitySet="difficulties" />
       <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
     </AssociationSet>
-    <AssociationSet Name="FK__zakaz_dif__zakaz__49C3F6B7" Association="Self.FK__zakaz_dif__zakaz__49C3F6B7">
+    <AssociationSet Name="FK__zakaz_dif__zakaz__74AE54BC" Association="Self.FK__zakaz_dif__zakaz__74AE54BC">
       <End Role="zakaz" EntitySet="zakaz" />
       <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
     </AssociationSet>

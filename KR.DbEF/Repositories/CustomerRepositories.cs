@@ -82,7 +82,10 @@ namespace KR.DbEF.Repositories
             {
                 if (user != null)
                 {
-                    db.Entry(user.land).State = EntityState.Deleted;
+                    foreach (var item in user.land)
+                    {
+                        db.Entry(item).State = EntityState.Deleted;
+                    }
                     db.Entry(Mapper.Map<customer>(user)).State = EntityState.Deleted;
                     db.SaveChanges();
                 }

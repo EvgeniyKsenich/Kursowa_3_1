@@ -38,6 +38,9 @@ namespace KR.Web
 
             bundles.Add(new ScriptBundle("~/bundles/Zakaz").Include(
                      "~/Scripts/Custom/Zakaz.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/OrderInfo").Include(
+                     "~/Scripts/Custom/Order.js"));
         }
     }
 }

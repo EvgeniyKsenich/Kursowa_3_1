@@ -82,6 +82,7 @@
     <Compile Include="Entities\Land.cs" />
     <Compile Include="Entities\Designer.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\SingleOrder.cs" />
     <Compile Include="Entities\Work.cs" />
     <Compile Include="Entities\ZakazInfo.cs" />
     <Compile Include="Entities\Zakaz.cs" />

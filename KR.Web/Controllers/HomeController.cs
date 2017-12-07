@@ -15,11 +15,17 @@ namespace KR.Web.Controllers
         //IZakaz<Zakaz> ZakazRepositories;
         ZakazInfoRepositories ZakazInfoRepositories;
         ZakazRepositories ZakazRepositories;
+        SingleOrderRepositories SingleOrderRepo;
+        DifficultsRepositories DiffiicultsRepo;
+        WorkRepositories WorkRepositories;
 
         public HomeController()
         {
             ZakazInfoRepositories = new ZakazInfoRepositories();
             ZakazRepositories = new ZakazRepositories();
+            SingleOrderRepo = new SingleOrderRepositories();
+            DiffiicultsRepo = new DifficultsRepositories();
+            WorkRepositories = new WorkRepositories();
         }
 
         public ActionResult Index(int? page)
@@ -33,7 +39,7 @@ namespace KR.Web.Controllers
         [HttpGet]
         public ActionResult Info(int id)
         {
-            var zakaz = ZakazInfoRepositories.GetbyId(id);
+            var zakaz = SingleOrderRepo.GetbyId(id);
             if (zakaz == null)
                 return RedirectToAction("Index");
 
@@ -63,7 +69,7 @@ namespace KR.Web.Controllers
             return View(zakaz);
         }
 
-        //[HttpPost]
+        [HttpPost]
         public JsonResult Delete(int id)
         {
             var zakaz = ZakazInfoRepositories.Delete(id);
@@ -80,6 +86,40 @@ namespace KR.Web.Controllers
                 return (-1).ToString();
 
             return (id).ToString();
+        }
+
+
+        [HttpPost]
+        public JsonResult AddDifficults(int orderId, int difficultsId)
+        {
+            var add = DiffiicultsRepo.Save(orderId, difficultsId);
+            return Json(add);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteDifficults(int orderId, int difficultsId)
+        {
+            var add = DiffiicultsRepo.Remove(orderId, difficultsId);
+            if (add == null)
+                return Json(-1);
+            return Json(add.id);
+        }
+
+        [HttpPost]
+        public JsonResult AddWork(int orderId, Work work)
+        {
+            var add = WorkRepositories.Save(orderId, work);
+            return Json(add);
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteWork(int orderId, int workId)
+        {
+            var add = WorkRepositories.Remove(orderId, workId);
+            if (add == null)
+                return Json(-1);
+            return Json(add.id);
         }
 
     }

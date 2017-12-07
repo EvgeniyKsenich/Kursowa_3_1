@@ -45,11 +45,14 @@ CREATE TABLE  difficulties (
 --	FOREIGN KEY (land_id) REFERENCES land(id)
 --);
 
-CREATE TABLE  land_difficulties (
+drop table zakaz_difficulties
+
+CREATE TABLE  zakaz_difficulties (
     difficulties_id int NOT NULL,
-    land_id int NOT NULL,
+    zakaz_id int NOT NULL,
 	FOREIGN KEY (difficulties_id) REFERENCES difficulties(id),
-	FOREIGN KEY (land_id) REFERENCES land(id)
+	FOREIGN KEY (zakaz_id) REFERENCES zakaz(id),
+	primary key (difficulties_id, zakaz_id)
 );
 
 CREATE TABLE  zakaz (
