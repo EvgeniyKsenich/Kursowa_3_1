@@ -19,12 +19,30 @@ namespace KR.Web.Controllers
             LandRepositories = new LandRepositories();
         }
 
-        [HttpGet]
-        public ActionResult Index(int? page)
+
+        public ActionResult Index(int? page, string name, string surname, string age)
         {
-            var List = _Repositories.GetList();
+            IEnumerable<Customer> List = new List<Customer>();
+            if (String.IsNullOrEmpty(name) && String.IsNullOrEmpty(surname) && String.IsNullOrEmpty(age))
+            {
+                List = _Repositories.GetList();
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(name))
+                    name = String.Empty;
+                if (String.IsNullOrEmpty(surname))
+                    surname = String.Empty;
+                if (String.IsNullOrEmpty(age))
+                    age = String.Empty;
+                List = _Repositories.GetList(name , surname, age);
+            }
+
+            if (List == null)
+                List = new List<Customer>();
             int pageSize = 10;
             int pageNumber = (page ?? 1);
+
             return View(List.ToPagedList(pageNumber, pageSize));
         }
 
@@ -62,9 +80,9 @@ namespace KR.Web.Controllers
             if (ModelState.IsValid)
             {
                 _Repositories.Edit(customer);
-                return RedirectToAction("Info", "Customer", new { id = customer.id});
+                return RedirectToAction("Info", "Customer", new { id = customer.id });
             }
-            
+
             return View();
         }
 

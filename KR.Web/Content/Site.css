@@ -39,7 +39,8 @@ div.dropdown {
 
 .addNewZakaz,
 .addNewWork,
-.addNewDifficults {
+.addNewDifficults,
+.btn-left {
     float: right;
 }
 

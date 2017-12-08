@@ -122,5 +122,17 @@ namespace KR.Web.Controllers
             return Json(add.id);
         }
 
+
+
+
+
+        //========================
+
+        public string GetReport()
+        {
+            ZakazInfoRepositories.GetReport();
+            return "";
+        }
+
     }
 }
