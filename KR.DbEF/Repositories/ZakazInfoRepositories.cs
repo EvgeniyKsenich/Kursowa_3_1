@@ -82,5 +82,33 @@ namespace KR.DbEF.Repositories
         }
 
 
+        public OrderReport GetReport(int id)
+        {
+            OrderReport Report = new OrderReport();
+            List<ZakazInfo> InfoList = new List<ZakazInfo>();
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                var zakaz = db.zakaz.SingleOrDefault(c => c.id == id);
+
+                Report.OrderId = zakaz.id.ToString();
+                Report.start_time = zakaz.start_time;
+                Report.end_time = zakaz.end_time;
+
+                Report.DesignerName = zakaz.designer.name;
+                Report.DesignerSurname = zakaz.designer.surname;
+
+                Report.LandName = zakaz.land.name;
+                Report.LandAddress = zakaz.land.addres;
+                Report.LandSize = zakaz.land.size.ToString();
+
+                Report.CustomerName = zakaz.land.customer.name;
+                Report.CustomerSurname = zakaz.land.customer.surname;
+
+                Report.WorkList = Mapper.Map<List<Work>>(zakaz.work);
+                Report.DifficultiesList = Mapper.Map<List<Difficulties>>(zakaz.difficulties);
+            }
+            return Report;
+        }
+
     }
 }

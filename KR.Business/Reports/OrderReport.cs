@@ -30,5 +30,11 @@ namespace KR.Business.Entities
 
         public string DesignerSurname { get; set; }
 
+        public string OrderId { get; set; }
+
+        public IEnumerable<Work> WorkList { get; set; }
+
+        public IEnumerable<Difficulties> DifficultiesList { get; set; }
+
     }
 }

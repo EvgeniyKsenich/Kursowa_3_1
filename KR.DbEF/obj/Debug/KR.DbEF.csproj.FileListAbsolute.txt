@@ -166,3 +166,8 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\ru\System.Web.WebPage
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\obj\Debug\KR.DbEF.csprojResolveAssemblyReference.cache
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\obj\Debug\KR.DbEF.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\obj\Debug\KR.DbEF.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\HtmlRenderer.PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\PdfSharp.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\HtmlRenderer.PdfSharp.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\de\PdfSharp.resources.dll

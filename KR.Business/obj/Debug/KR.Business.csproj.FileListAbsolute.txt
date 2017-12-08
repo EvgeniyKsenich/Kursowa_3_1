@@ -66,3 +66,15 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\Microsoft.CodeDom
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.pdb
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\obj\Debug\KR.Business.csprojResolveAssemblyReference.cache
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\HtmlRenderer.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\HtmlRenderer.PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\itextsharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\PdfSharp.Charting.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\HtmlRenderer.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\HtmlRenderer.PdfSharp.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\itextsharp.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\PdfSharp.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\PdfSharp.Charting.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\de\PdfSharp.resources.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Business\bin\de\PdfSharp.Charting.resources.dll

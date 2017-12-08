@@ -186,3 +186,13 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\ru\System.Web.WebPages
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\obj\Debug\KR.Web.csprojResolveAssemblyReference.cache
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\obj\Debug\KR.Web.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\obj\Debug\KR.Web.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\HtmlRenderer.PdfSharp.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\PdfSharp.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\HtmlRenderer.PdfSharp.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\de\PdfSharp.resources.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\HtmlRenderer.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\PdfSharp.Charting.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\HtmlRenderer.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\PdfSharp.Charting.xml
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web\bin\de\PdfSharp.Charting.resources.dll

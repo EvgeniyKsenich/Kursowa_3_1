@@ -1,4 +1,5 @@
 ﻿using KR.Business.Entities;
+using KR.Business.ReportBilders;
 using KR.Business.Repositories;
 using KR.DbEF.Repositories;
 using PagedList;
@@ -128,10 +129,11 @@ namespace KR.Web.Controllers
 
         //========================
 
-        public string GetReport()
+        public FileResult GetReport(int id)
         {
-            ZakazInfoRepositories.GetReport();
-            return "";
+            var report = ZakazInfoRepositories.GetReport(id);
+            var file = OrderReportBilders.GetReport(report);
+            return  File(file, "application/pdf", "report.pdf");
         }
 
     }
