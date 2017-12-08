@@ -29,9 +29,36 @@ namespace KR.Web.Controllers
             WorkRepositories = new WorkRepositories();
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, 
+            string nameDesigner, string surnameDesigner,
+            string nameCustomer, string surnameCustomer,
+            string price, 
+            string startDate, string endDate)
         {
-            var List = ZakazInfoRepositories.GetList();
+            if (String.IsNullOrEmpty(nameDesigner))
+                nameDesigner = String.Empty;
+            if (String.IsNullOrEmpty(surnameDesigner))
+                surnameDesigner = String.Empty;
+
+            if (String.IsNullOrEmpty(nameCustomer))
+                nameCustomer = String.Empty;
+            if (String.IsNullOrEmpty(surnameCustomer))
+                surnameCustomer = String.Empty;
+
+            if (String.IsNullOrEmpty(price))
+                price = String.Empty;
+
+            if (String.IsNullOrEmpty(startDate))
+                startDate = String.Empty;
+            if (String.IsNullOrEmpty(endDate))
+                endDate = String.Empty;
+
+            var List = ZakazInfoRepositories.GetList(nameDesigner, surnameDesigner,
+                                                     nameCustomer,  surnameCustomer, price,startDate,  endDate);
+
+            if (List == null)
+                List = new List<ZakazInfo>();
+
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(List.ToPagedList(pageNumber, pageSize));
@@ -133,7 +160,7 @@ namespace KR.Web.Controllers
         {
             var report = ZakazInfoRepositories.GetReport(id);
             var file = OrderReportBilders.GetReport(report);
-            return  File(file, "application/pdf", "report.pdf");
+            return File(file, "application/pdf", "report.pdf");
         }
 
     }

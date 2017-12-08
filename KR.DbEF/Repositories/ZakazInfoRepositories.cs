@@ -35,6 +35,49 @@ namespace KR.DbEF.Repositories
             return InfoList;
         }
 
+        public IEnumerable<ZakazInfo> GetList(List<zakaz> zakaz)
+        {
+            List<ZakazInfo> InfoList = new List<ZakazInfo>();
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+
+                foreach (var item in zakaz)
+                {
+                    InfoList.Add(new ZakazInfo()
+                    {
+                        zakaz = Mapper.Map<Zakaz>(item),
+                        land = Mapper.Map<Land>(item.land),
+                        customer = Mapper.Map<Customer>(item.land.customer),
+                        designer = Mapper.Map<Designer>(item.designer),
+                        difficults = Mapper.Map<List<Difficulties>>(item.difficulties),
+                        work = Mapper.Map<List<Work>>(item.work)
+                    });
+                }
+            }
+            return InfoList;
+        }
+
+        public IEnumerable<ZakazInfo> GetList(string nameDesigner, string surnameDesigner,
+                              string nameCustomer, string surnameCustomer, string price,
+                              string startDate, string endDate)
+        {
+            IEnumerable<ZakazInfo> Zakaz;
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                var  zakaz = db.zakaz
+                    .Where(item => item.designer.name.Contains(nameDesigner))
+                    .Where(item => item.designer.surname.Contains(surnameDesigner))
+                    .Where(item => item.land.customer.name.Contains(nameCustomer))
+                    .Where(item => item.land.customer.surname.Contains(surnameCustomer))
+                    .Where(item => item.price.ToString().Contains(price))
+                    .Where(item => item.start_time.ToString().Contains(startDate))
+                    .Where(item => item.end_time.ToString().Contains(endDate))
+                    .ToList();
+                Zakaz = GetList(zakaz);
+            }
+            return Zakaz;
+        }
+
         public ZakazInfo GetbyId(int id)
         {
             ZakazInfo ZkazInfo;

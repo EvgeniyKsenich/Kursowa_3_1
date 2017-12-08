@@ -52,3 +52,16 @@ div.dropdown {
 .none {
     display: none;
 }
+
+.form-collapse {
+    padding: 20px 5px;
+    background-color: white;
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+}
+
+.tb {
+    display: inline-block;
+    margin-right: 10%;
+    margin-bottom: 15px;
+}

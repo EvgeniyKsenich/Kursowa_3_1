@@ -8,16 +8,35 @@
     <div class="col-md-8 col-md-offset-2">
         <h2>Index</h2>
         <div class="top-custom">
-            <button class="btn btn-toolbar pull-right" type="button" data-toggle="">Search</button>
-            <div class="innerMenu none">
-                <div class="inner">
-                    <span>Designer</span>
-                    <br />
-                    <span>Name</span>
-                    @Html.Editor("DesignerName")
-                    <span>Surname</span>
-                    @Html.Editor("DesigneSurname")
-                </div>
+
+            <div>
+                <button type="submit" class="btn btn-default btn-left" data-toggle="collapse" data-target="#demo">Search</button>
+                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                {
+                    <div id="demo" class="collapse form-collapse">
+                        <table class="tb">
+                            <tr><td>Designer:</td></tr>
+                            <tr><td>Name</td><td><input type="text" name="nameDesigner" /></td></tr>
+                            <tr><td>Surname</td><td><input type="text" name="surnameDesigner" /></td></tr>
+                        </table>
+                        <table class="tb">
+                            <tr><td>Customer:</td></tr>
+                            <tr><td>Name</td><td><input type="text" name="nameCustomer" /></td></tr>
+                            <tr><td>Surname</td><td><input type="text" name="surnameCustomer" /></td></tr>
+                        </table>
+                        <table class="tb">
+                            <tr><td>Price</td><td><input type="number" name="price" /></td></tr>
+                            <tr>
+                                <td>Start date</td>
+                                <td><input type="date" name="startDate" /></td>
+                                <td>End date</td>
+                                <td><input type="date" name="endDate" /></td>
+                            </tr>
+                        </table>
+                        <button type="submit" class="btn btn-default" data-toggle="collapse" data-target="#demo">Search</button>
+                    </div>
+                    
+                }
             </div>
         </div>
         <p>
