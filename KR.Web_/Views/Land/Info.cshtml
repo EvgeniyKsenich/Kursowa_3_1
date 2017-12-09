@@ -1,0 +1,45 @@
+﻿@model KR.Business.Entities.Land
+
+@{
+    ViewBag.Title = "Info";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Info</h2>
+        @Html.ActionLink("Add order", "Add", "Home", new { id = Model.id }, null)
+        <div>
+            <h4>Land</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.size)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.size)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.addres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.addres)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

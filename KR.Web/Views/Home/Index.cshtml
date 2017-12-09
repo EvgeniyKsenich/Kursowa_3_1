@@ -39,9 +39,6 @@
                 }
             </div>
         </div>
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
         <table class="table">
             <tr>
                 <th>
@@ -75,9 +72,12 @@
                         @Html.DisplayFor(modelItem => item.zakaz.price)
                     </td>
                     <td>
+                        @if (User.IsInRole("admin"))
+                        {
                         @Html.ActionLink("Edit", "Edit", new { id = item.zakaz.id }) |
                         @Html.ActionLink("Details", "Info", new { id = item.zakaz.id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id }, new { @class = "delete", id = "item_" + item.zakaz.id })
+                        }
                     </td>
                 </tr>
                 <tr class="innerTR" id="row_2_@item.zakaz.id">

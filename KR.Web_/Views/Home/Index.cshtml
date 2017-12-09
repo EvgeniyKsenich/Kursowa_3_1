@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<KR.Business.Entities.ZakazInfo>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Index</h2>
+        <div class="top-custom">
+
+            <div>
+                <button type="submit" class="btn btn-default btn-left" data-toggle="collapse" data-target="#demo">Search</button>
+                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                {
+                    <div id="demo" class="collapse form-collapse">
+                        <table class="tb">
+                            <tr><td>Designer:</td></tr>
+                            <tr><td>Name</td><td><input type="text" name="nameDesigner" /></td></tr>
+                            <tr><td>Surname</td><td><input type="text" name="surnameDesigner" /></td></tr>
+                        </table>
+                        <table class="tb">
+                            <tr><td>Customer:</td></tr>
+                            <tr><td>Name</td><td><input type="text" name="nameCustomer" /></td></tr>
+                            <tr><td>Surname</td><td><input type="text" name="surnameCustomer" /></td></tr>
+                        </table>
+                        <table class="tb">
+                            <tr><td>Price</td><td><input type="number" name="price" /></td></tr>
+                            <tr>
+                                <td>Start date</td>
+                                <td><input type="date" name="startDate" /></td>
+                                <td>End date</td>
+                                <td><input type="date" name="endDate" /></td>
+                            </tr>
+                        </table>
+                        <button type="submit" class="btn btn-default" data-toggle="collapse" data-target="#demo">Search</button>
+                    </div>
+                    
+                }
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    <span>Designer</span>
+                </th>
+                <th>
+                    <span>Customer</span>
+                </th>
+                <th>
+                    <span>Price</span>
+                </th>
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr id="row_1_@item.zakaz.id">
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.designer.name)*@
+                        @Html.ActionLink(item.designer.name, "Info", "Designer", new { id = item.designer.id }, null)
+                        @Html.ActionLink(item.designer.surname, "Info", "Designer", new { id = item.designer.id }, null)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.customer.name)*@
+                        @Html.ActionLink(item.customer.name, "Info", "Customer", new { id = item.customer.id }, null)
+                        @Html.ActionLink(item.customer.surname, "Info", "Customer", new { id = item.customer.id }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.zakaz.price)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.zakaz.id }) |
+                        @Html.ActionLink("Details", "Info", new { id = item.zakaz.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.zakaz.id }, new { @class = "delete", id = "item_" + item.zakaz.id })
+                    </td>
+                </tr>
+                <tr class="innerTR" id="row_2_@item.zakaz.id">
+                    <td>
+                        <span>Start Date:</span>
+                        @Html.DisplayFor(modelItem => item.zakaz.start_time)
+                        <br />
+                        <span>End Date:</span>
+                        @Html.DisplayFor(modelItem => item.zakaz.end_time)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/Zakaz")

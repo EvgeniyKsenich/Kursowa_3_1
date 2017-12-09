@@ -1,0 +1,159 @@
+﻿@model KR.Business.Entities.SingleOrder
+
+@{
+    ViewBag.Title = "Info";
+}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @Html.HiddenFor(model => Model.ZakazInfo.zakaz.id, new { id="orderId" })
+        <div>
+            <dl class="dl-horizontal"></dl>
+        </div>
+        <table>
+            <tr class="ZakazDesigner">
+                <td>
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.designer)<span>: </span>
+                </td>
+                <td>
+                    @Html.ActionLink(Model.ZakazInfo.designer.name, "Info", "Designer", new { id = Model.ZakazInfo.designer.id }, null)
+                    @Html.ActionLink(Model.ZakazInfo.designer.surname, "Info", "Designer", new { id = Model.ZakazInfo.designer.id }, null)
+                </td>
+            <tr />
+
+            <tr class="ZakazCustomer">
+                <td>
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.customer)<span>: </span>
+                </td>
+                <td>
+                    @Html.ActionLink(Model.ZakazInfo.customer.name, "Info", "Customer", new { id = Model.ZakazInfo.customer.id }, null)
+                    @Html.ActionLink(Model.ZakazInfo.customer.surname, "Info", "Customer", new { id = Model.ZakazInfo.customer.id }, null)
+                <td>
+            </tr>
+
+            <tr class="ZakazLand">
+                <td>
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.land)
+                </td>
+                <td>
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.land.name)
+                </td>
+                <td>
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.land.addres)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.ActionLink(Model.ZakazInfo.land.name, "Info", "Land", new { id = Model.ZakazInfo.land.id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(Model.ZakazInfo.land.addres, "Info", "Land", new { id = Model.ZakazInfo.land.id }, null)
+                </td>
+            </tr>
+        </table>
+        <div class="ZakazPrice">
+            @Html.LabelFor(modelItem => Model.ZakazInfo.zakaz.price)<span>: </span>
+            @Html.DisplayFor(modelItem => Model.ZakazInfo.zakaz.price)
+            <br />
+                <div class="ZakazWork">
+
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.work)<span>: </span>
+                    <button class="addNewWork btn btn-default" data-toggle="collapse" data-target="#demo">Add Work</button>
+                    <div id="demo" class="collapse">
+                        <table class="table">
+                            <tr>
+                                <td>Count</td>
+                                <td><input type="number" name="countt" id="countt" /></td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td><input type="text" name="typee" id="typee" /></td>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td><input type="number" name="price" id="price" /></td>
+                            </tr>
+                            <tr><td><button id="addNewWork" class="btn btn-default">Add</button></td><td></td></tr>
+                        </table>
+                    </div>
+                    @*@Html.ActionLink("Add new", "Add", "Work", new { id = Model.ZakazInfo.zakaz.id }, new { @class="addNewWork"})*@
+                    <table class="table">
+                        <tr>
+                            <th>@Html.LabelFor(modelItem => Model.ZakazInfo.work[0].countt)</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.ZakazInfo.work)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.countt)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.typee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                                <td>
+                                    <span>@(item.countt * item.price)</span>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteWork", "Home", null, new { id = item.id, @class = "deleteWork" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            
+
+                <div class="ZakazDifficults">
+                    @Html.LabelFor(modelItem => Model.ZakazInfo.difficults)<span> : </span>
+                    <select id="newDifficults">
+                        @foreach (var item in Model.AllPosibleDifficults)
+                        {
+                            <option value="@item.id">@item.subj</option>
+                        }
+                    </select>
+                    <button id="addDifficults" class="btn btn-default">Add</button>
+                    <table class="table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.ZakazInfo.difficults)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subj)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "DeleteDifficalties", "Home", null, new { id = item.id, @class = "deleteDifficults" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            
+        </div>
+        <div class="ZakazDate">
+            <span>Start Date:</span>
+            @Html.DisplayFor(modelItem => Model.ZakazInfo.zakaz.start_time)
+            <br />
+            <span>End Date:</span>
+            @Html.DisplayFor(modelItem => Model.ZakazInfo.zakaz.end_time)
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ZakazInfo.zakaz.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/OrderInfo")
