@@ -14,7 +14,7 @@
             @Html.ActionLink("Create New", "Add")
         </p>
 
-        @using (Html.BeginForm("Index","Customer",FormMethod.Get))
+        @using (Html.BeginForm("Index", "Customer", FormMethod.Get))
         {
             <div id="demo" class="">
                 <input type="text" name="name" />
@@ -51,15 +51,21 @@
                             @Html.DisplayFor(modelItem => item.age)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
+                           
+                            @Html.ActionLink("Details", "Info", new { id = item.id })
+                            @if (User.IsInRole("admin"))
+                            {
+                                <span>|</span>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                                <span>|</span>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
+                            }
                         </td>
                     </tr>
                 }
             </table>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-        </div> 
+        </div>
     </div>
 </div>
 @Scripts.Render("~/bundles/Customer")

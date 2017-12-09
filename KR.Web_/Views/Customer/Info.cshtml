@@ -35,7 +35,10 @@
             </table>
         </div>
         <div id="landList">
-            @Html.ActionLink("Add land", "Add", "Land", new { id = Model.Customer.id }, null)
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Add land", "Add", "Land", new { id = Model.Customer.id }, null)
+            }
             @if (Model.Lands.Count() > 0)
             {
                 <table class="table">
@@ -68,10 +71,14 @@
                                 @Html.DisplayFor(modelItem => item.size)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", "Land", new { id = item.id }, null) |
-                                @Html.ActionLink("Details", "Info", "Land", new { id = item.id }, null) |
-                                @Html.ActionLink("Delete", "Delete", "Land", new { id = item.id }, new { @class = "delete", id = "item_" + item.id }) |
-                                @Html.ActionLink("Add Order", "Add", "Home", new { id = item.id }, null)
+                                @Html.ActionLink("Details", "Info", "Land", new { id = item.id }, null)
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <span>|</span>
+                                    @Html.ActionLink("Edit", "Edit", "Land", new { id = item.id }, null) <span>|</span>
+                                    @Html.ActionLink("Delete", "Delete", "Land", new { id = item.id }, new { @class = "delete", id = "item_" + item.id }) <span>|</span>
+                                    @Html.ActionLink("Add Order", "Add", "Home", new { id = item.id }, null)
+                                }
                             </td>
                         </tr>
                     }
@@ -79,8 +86,12 @@
             }
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Customer.id }) |
             @Html.ActionLink("Back to List", "Index")
+            @if (User.IsInRole("admin"))
+            {
+                <span>|</span>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Customer.id })
+            }
         </p>
     </div>
 </div>

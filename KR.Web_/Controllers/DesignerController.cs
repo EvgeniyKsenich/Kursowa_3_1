@@ -25,6 +25,7 @@ namespace KR.Web.Controllers
 
         // GET: Designer
         [HttpGet]
+        [Authorize]
         public ActionResult Index(int? page)
         {
             var List = _Repositories.GetList();
@@ -34,6 +35,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
             return View();
@@ -41,6 +43,7 @@ namespace KR.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Add(Designer designer)
         {
             if (ModelState.IsValid)
@@ -52,6 +55,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var designer = _Repositories.GetbyId(id);
@@ -62,6 +66,7 @@ namespace KR.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Designer customer)
         {
             if (ModelState.IsValid)
@@ -73,6 +78,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public JsonResult Delete(int id)
         {
             var customer = _Repositories.Delete(id);
@@ -83,6 +89,7 @@ namespace KR.Web.Controllers
             return Json(id);
         }
 
+        [HttpGet]
         public ActionResult Info(int id)
         {
             var user = _Repositories.GetbyId(id);

@@ -5,7 +5,7 @@
 }
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        @Html.HiddenFor(model => Model.ZakazInfo.zakaz.id, new { id="orderId" })
+        @Html.HiddenFor(model => Model.ZakazInfo.zakaz.id, new { id = "orderId" })
         <div>
             <dl class="dl-horizontal"></dl>
         </div>
@@ -55,92 +55,98 @@
             @Html.LabelFor(modelItem => Model.ZakazInfo.zakaz.price)<span>: </span>
             @Html.DisplayFor(modelItem => Model.ZakazInfo.zakaz.price)
             <br />
-                <div class="ZakazWork">
+            <div class="ZakazWork">
 
-                    @Html.LabelFor(modelItem => Model.ZakazInfo.work)<span>: </span>
-                    <button class="addNewWork btn btn-default" data-toggle="collapse" data-target="#demo">Add Work</button>
-                    <div id="demo" class="collapse">
-                        <table class="table">
-                            <tr>
-                                <td>Count</td>
-                                <td><input type="number" name="countt" id="countt" /></td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td><input type="text" name="typee" id="typee" /></td>
-                            </tr>
-                            <tr>
-                                <td>Price</td>
-                                <td><input type="number" name="price" id="price" /></td>
-                            </tr>
-                            <tr><td><button id="addNewWork" class="btn btn-default">Add</button></td><td></td></tr>
-                        </table>
-                    </div>
-                    @*@Html.ActionLink("Add new", "Add", "Work", new { id = Model.ZakazInfo.zakaz.id }, new { @class="addNewWork"})*@
+                @Html.LabelFor(modelItem => Model.ZakazInfo.work)<span>: </span>
+                <button class="addNewWork btn btn-default" data-toggle="collapse" data-target="#demo">Add Work</button>
+                <div id="demo" class="collapse">
                     <table class="table">
                         <tr>
-                            <th>@Html.LabelFor(modelItem => Model.ZakazInfo.work[0].countt)</th>
-                            <th>Type</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th></th>
+                            <td>Count</td>
+                            <td><input type="number" name="countt" id="countt" /></td>
                         </tr>
-                        @foreach (var item in Model.ZakazInfo.work)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.countt)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.typee)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.price)
-                                </td>
-                                <td>
-                                    <span>@(item.countt * item.price)</span>
-                                </td>
-                                <td>
+                        <tr>
+                            <td>Type</td>
+                            <td><input type="text" name="typee" id="typee" /></td>
+                        </tr>
+                        <tr>
+                            <td>Price</td>
+                            <td><input type="number" name="price" id="price" /></td>
+                        </tr>
+                        <tr><td><button id="addNewWork" class="btn btn-default">Add</button></td><td></td></tr>
+                    </table>
+                </div>
+                @*@Html.ActionLink("Add new", "Add", "Work", new { id = Model.ZakazInfo.zakaz.id }, new { @class="addNewWork"})*@
+                <table class="table">
+                    <tr>
+                        <th>@Html.LabelFor(modelItem => Model.ZakazInfo.work[0].countt)</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.ZakazInfo.work)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.countt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.typee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                <span>@(item.countt * item.price)</span>
+                            </td>
+                            <td>
+                                @if (User.IsInRole("admin"))
+                                {
                                     @Html.ActionLink("Delete", "DeleteWork", "Home", null, new { id = item.id, @class = "deleteWork" })
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            
-
-                <div class="ZakazDifficults">
-                    @Html.LabelFor(modelItem => Model.ZakazInfo.difficults)<span> : </span>
-                    <select id="newDifficults">
-                        @foreach (var item in Model.AllPosibleDifficults)
-                        {
-                            <option value="@item.id">@item.subj</option>
-                        }
-                    </select>
-                    <button id="addDifficults" class="btn btn-default">Add</button>
-                    <table class="table">
-                        <tr>
-                            <th>Type</th>
-                            <th>Price</th>
-                            <th></th>
+                                }
+                            </td>
                         </tr>
-                        @foreach (var item in Model.ZakazInfo.difficults)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.subj)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.price)
-                                </td>
-                                <td>
+                    }
+                </table>
+            </div>
+
+
+            <div class="ZakazDifficults">
+                @Html.LabelFor(modelItem => Model.ZakazInfo.difficults)<span> : </span>
+                <select id="newDifficults">
+                    @foreach (var item in Model.AllPosibleDifficults)
+                    {
+                        <option value="@item.id">@item.subj</option>
+                    }
+                </select>
+                <button id="addDifficults" class="btn btn-default">Add</button>
+                <table class="table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.ZakazInfo.difficults)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.subj)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                @if (User.IsInRole("admin"))
+                                {
                                     @Html.ActionLink("Delete", "DeleteDifficalties", "Home", null, new { id = item.id, @class = "deleteDifficults" })
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                </div>
-            
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
         </div>
         <div class="ZakazDate">
             <span>Start Date:</span>

@@ -19,7 +19,7 @@ namespace KR.Web.Controllers
             LandRepositories = new LandRepositories();
         }
 
-
+        [Authorize]
         public ActionResult Index(int? page, string name, string surname, string age)
         {
             IEnumerable<Customer> List = new List<Customer>();
@@ -47,6 +47,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Add()
         {
             return View();
@@ -54,6 +55,7 @@ namespace KR.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Add(Customer customer)
         {
             if (ModelState.IsValid)
@@ -65,6 +67,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var customer = _Repositories.GetbyId(id);
@@ -75,6 +78,7 @@ namespace KR.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Customer customer)
         {
             if (ModelState.IsValid)
@@ -87,6 +91,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public JsonResult Delete(int id)
         {
             var customer = _Repositories.Delete(id);
@@ -98,6 +103,7 @@ namespace KR.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Info(int id)
         {
             var customer = _Repositories.GetbyId(id);

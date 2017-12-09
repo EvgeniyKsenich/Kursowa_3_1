@@ -24,23 +24,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr id="row_@item.id">
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.age)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "delete", id = "item_" + item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr id="row_@item.id">
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                @if (User.IsInRole("admin"))
+                {
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "delete", id = "item_" + item.id })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 
