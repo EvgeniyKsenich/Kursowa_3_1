@@ -12,18 +12,13 @@ namespace KR.Web.Controllers
 {
     public class DesignerController : Controller
     {
-        private static IDesigner<Designer> _Repositories; 
-        //public DesignerController(IDesigner<Designer> Repositories)
-        //{
-        //    _Repositories = Repositories;
-        //}
-
-        public DesignerController()
+        private static IDesigner<Designer> _Repositories;
+        public DesignerController(IDesigner<Designer> Repositories)
         {
-            _Repositories = new DesignerRepositories();
+            _Repositories = Repositories;
         }
 
-        // GET: Designer
+        
         [HttpGet]
         [Authorize]
         public ActionResult Index(int? page)

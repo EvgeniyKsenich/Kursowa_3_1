@@ -10,6 +10,8 @@ namespace KR.Business.Repositories
     {
         IEnumerable<T> GetList();
 
+        IEnumerable<T> GetList(string name, string surname, string age);
+
         T GetbyId(int id);
 
         int Edit(T item);

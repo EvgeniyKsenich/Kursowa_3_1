@@ -17,18 +17,21 @@
             <div class="navbar-header">
                 @Html.ActionLink("Land Dez", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            @Html.Partial("_LoginPartial")
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                    Tables
+                <button class="btn btn-default dropdown-toggle btn-left" type="button" data-toggle="dropdown">
+                    Navigation
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu menu-right">
+                <ul class="dropdown-menu ">
                     <li>@Html.ActionLink("Order", "Index", "Home")</li>
                     <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Designer", "Index", "Designer")</li>
-                    @*<li>@Html.ActionLink("Zakaz", "Index", "Home")</li>*@
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Reports", "Reports", "Home")</li>
+                    }
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

@@ -143,3 +143,4 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\bin\ru\Microsoft.Owin.Sec
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.csprojResolveAssemblyReference.cache
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.pdb
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\bin\WebActivatorEx.dll

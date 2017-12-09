@@ -8,7 +8,7 @@ using System.Web;
 
 namespace KR.DbEF.Repositories
 {
-    public class DifficultsRepositories //: IWork<Work>
+    public class DifficultsRepositories : IDifficulties<Difficulties>
     {
         public int Save(int orderId, int DifficultsId)
         {

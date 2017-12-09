@@ -12,25 +12,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KR.DbEF;
 
 namespace KR.Web_.Controllers
 {
     public class HomeController : Controller
     {
-        //IZakaz<Zakaz> ZakazRepositories;
-        ZakazInfoRepositories ZakazInfoRepositories;
-        ZakazRepositories ZakazRepositories;
-        SingleOrderRepositories SingleOrderRepo;
-        DifficultsRepositories DiffiicultsRepo;
-        WorkRepositories WorkRepositories;
-
-        public HomeController()
+        private static IZakaz<Zakaz> ZakazRepositories;
+        private static IWork<Work> WorkRepositories;
+        private static IZakazInfo<ZakazInfo, zakaz> ZakazInfoRepositories;
+        private static ISingleOrder<SingleOrder> SingleOrderRepo;
+        private static IDifficulties<Difficulties> DiffiicultsRepo;
+        
+        public HomeController(IZakaz<Zakaz> _ZakazRepositories,
+                              IWork<Work> _WorkRepositories,
+                              IZakazInfo<ZakazInfo, zakaz> _ZakazInfoRepositories,
+                              ISingleOrder<SingleOrder> _SingleOrderRepo,
+                              IDifficulties<Difficulties> _DiffiicultsRepo)
         {
-            ZakazInfoRepositories = new ZakazInfoRepositories();
-            ZakazRepositories = new ZakazRepositories();
-            SingleOrderRepo = new SingleOrderRepositories();
-            DiffiicultsRepo = new DifficultsRepositories();
-            WorkRepositories = new WorkRepositories();
+            ZakazRepositories = _ZakazRepositories;
+            WorkRepositories = _WorkRepositories;
+            ZakazInfoRepositories = _ZakazInfoRepositories;
+            SingleOrderRepo = _SingleOrderRepo;
+            DiffiicultsRepo = _DiffiicultsRepo;
         }
 
         [Authorize]

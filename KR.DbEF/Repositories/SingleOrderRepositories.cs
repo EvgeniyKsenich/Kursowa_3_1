@@ -9,7 +9,7 @@ using System.Web;
 
 namespace KR.DbEF.Repositories
 {
-    public class SingleOrderRepositories //: ISingleOrder<SingleOrder>
+    public class SingleOrderRepositories : ISingleOrder<SingleOrder>
     {
        
         public SingleOrder GetbyId(int id)

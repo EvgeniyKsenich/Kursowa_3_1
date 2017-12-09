@@ -5,6 +5,14 @@
 }
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
+        @if (User.IsInRole("admin"))
+        {
+            using (Html.BeginForm("GetOrderReport", "Home", FormMethod.Get))
+            {
+                @Html.Hidden("id", Model.ZakazInfo.zakaz.id)
+                <button class="btn btn-default">Get Report</button>
+            }
+        }
         @Html.HiddenFor(model => Model.ZakazInfo.zakaz.id, new { id = "orderId" })
         <div>
             <dl class="dl-horizontal"></dl>

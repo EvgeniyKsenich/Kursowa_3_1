@@ -108,11 +108,14 @@
     <Compile Include="ReportBilders\ReportBilders.cs" />
     <Compile Include="Reports\OrderCommonDate.cs" />
     <Compile Include="Reports\OrderReport.cs" />
+    <Compile Include="Repositories\IDifficulties.cs" />
+    <Compile Include="Repositories\ISingleOrder.cs" />
     <Compile Include="Repositories\IWork.cs" />
     <Compile Include="Repositories\IZakaz.cs" />
     <Compile Include="Repositories\ILand.cs" />
     <Compile Include="Repositories\ICustomer.cs" />
     <Compile Include="Repositories\IDesigner.cs" />
+    <Compile Include="Repositories\IZakazInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

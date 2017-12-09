@@ -8,14 +8,8 @@ namespace KR.Business.Repositories
 {
     public interface IWork<T>
     {
-        IEnumerable<T> GetList();
+        T Remove(int orderId, int workId);
 
-        T GetbyId(int id);
-
-        int Edit(T item);
-
-        T Delete(int id);
-
-        void Save(T item);
+        int Save(int orderId, T item);
     }
 }

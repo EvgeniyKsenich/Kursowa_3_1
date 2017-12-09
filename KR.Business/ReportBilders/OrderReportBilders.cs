@@ -40,6 +40,7 @@ namespace KR.Business.ReportBilders
                     "<br/>",
                     "Designer: ", report.DesignerName, " ", report.DesignerSurname, "<br/>",
                     workList, "</br>",
+                    "<br/>",
                     difficultiesList, "</br>",
                     "<br/>",
                 "</body>",
@@ -67,7 +68,7 @@ namespace KR.Business.ReportBilders
         public static string GetDifficulties(OrderReport report)
         {
             String Html = String.Concat(
-                "Work List :", "</br>"
+                "Difficulties List :", "</br>"
                 );
             foreach (var item in report.DifficultiesList)
             {

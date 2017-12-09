@@ -10,7 +10,7 @@ using System.Web;
 
 namespace KR.DbEF.Repositories
 {
-    public class ZakazInfoRepositories //: IZakazInfo<ZakazInfo>
+    public class ZakazInfoRepositories : IZakazInfo<ZakazInfo, zakaz>
     {
         public IEnumerable<ZakazInfo> GetList()
         {
@@ -81,7 +81,7 @@ namespace KR.DbEF.Repositories
 
         public ZakazInfo GetbyId(int id)
         {
-            ZakazInfo ZkazInfo;
+            ZakazInfo ZkazInfo = new ZakazInfo();
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 var zakaz = db.zakaz.SingleOrDefault(c => c.id == id);

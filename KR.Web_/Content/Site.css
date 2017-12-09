@@ -40,8 +40,12 @@ div.dropdown {
 .addNewZakaz,
 .addNewWork,
 .addNewDifficults,
-.btn-left {
+.btn-right {
     float: right;
+}
+
+.btn-left {
+    float: left;
 }
 
 .top-custom {
@@ -73,4 +77,8 @@ div.dropdown {
 .send{
     display:block;
     margin-top:10px;
+}
+
+.menu-left{
+    float:left;
 }

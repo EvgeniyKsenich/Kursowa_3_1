@@ -10,12 +10,6 @@ namespace KR.Business.Repositories
     {
         IEnumerable<T> GetList();
 
-        T GetbyId(int id);
-
-        int Edit(T item);
-
-        T Delete(int id);
-
-        void Save(T item);
+        T Save(T item);
     }
 }

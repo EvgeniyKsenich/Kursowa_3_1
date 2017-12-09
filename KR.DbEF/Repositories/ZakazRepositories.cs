@@ -8,7 +8,7 @@ using System.Web;
 
 namespace KR.DbEF.Repositories
 {
-    public class ZakazRepositories //: IZakaz<Zakaz>
+    public class ZakazRepositories : IZakaz<Zakaz>
     {
         public IEnumerable<Zakaz> GetList()
         {

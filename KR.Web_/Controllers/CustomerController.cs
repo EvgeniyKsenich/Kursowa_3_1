@@ -6,17 +6,18 @@ using System.Web.Mvc;
 using KR.Business.Entities;
 using KR.DbEF.Repositories;
 using PagedList;
+using KR.Business.Repositories;
 
 namespace KR.Web.Controllers
 {
     public class CustomerController : Controller
     {
-        CustomerRepositories _Repositories;
-        LandRepositories LandRepositories;
-        public CustomerController()
+        private static ICustomer<Customer> CustomerRepositories;
+        private static ILand<Land> LandRepositories;
+        public CustomerController(ICustomer<Customer> _Repositories, ILand<Land> _LandRepositories)
         {
-            _Repositories = new CustomerRepositories();
-            LandRepositories = new LandRepositories();
+            CustomerRepositories = _Repositories;
+            LandRepositories = _LandRepositories;
         }
 
         [Authorize]
@@ -25,7 +26,7 @@ namespace KR.Web.Controllers
             IEnumerable<Customer> List = new List<Customer>();
             if (String.IsNullOrEmpty(name) && String.IsNullOrEmpty(surname) && String.IsNullOrEmpty(age))
             {
-                List = _Repositories.GetList();
+                List = CustomerRepositories.GetList();
             }
             else
             {
@@ -35,7 +36,7 @@ namespace KR.Web.Controllers
                     surname = String.Empty;
                 if (String.IsNullOrEmpty(age))
                     age = String.Empty;
-                List = _Repositories.GetList(name , surname, age);
+                List = CustomerRepositories.GetList(name , surname, age);
             }
 
             if (List == null)
@@ -60,7 +61,7 @@ namespace KR.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _Repositories.Save(customer);
+                CustomerRepositories.Save(customer);
                 return RedirectToAction("Index");
             }
             return View();
@@ -70,7 +71,7 @@ namespace KR.Web.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
-            var customer = _Repositories.GetbyId(id);
+            var customer = CustomerRepositories.GetbyId(id);
             if (customer == null)
                 return RedirectToAction("Customer");
             return View(customer);
@@ -83,7 +84,7 @@ namespace KR.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _Repositories.Edit(customer);
+                CustomerRepositories.Edit(customer);
                 return RedirectToAction("Info", "Customer", new { id = customer.id });
             }
 
@@ -94,7 +95,7 @@ namespace KR.Web.Controllers
         [Authorize(Roles = "admin")]
         public JsonResult Delete(int id)
         {
-            var customer = _Repositories.Delete(id);
+            var customer = CustomerRepositories.Delete(id);
             if (customer == null)
             {
                 return Json(-1);
@@ -106,7 +107,7 @@ namespace KR.Web.Controllers
         [Authorize]
         public ActionResult Info(int id)
         {
-            var customer = _Repositories.GetbyId(id);
+            var customer = CustomerRepositories.GetbyId(id);
             var LandsList = LandRepositories.GetListForUser(id);
             if (customer == null || LandsList == null)
                 return RedirectToAction("Index");

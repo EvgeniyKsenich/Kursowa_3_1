@@ -1,4 +1,5 @@
 ﻿using KR.Business.Entities;
+using KR.Business.Repositories;
 using KR.DbEF.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace KR.Web.Controllers
 {
     public class LandController : Controller
     {
-        LandRepositories LandRepositories;
-        CustomerRepositories CustomerRepositories;
-        public LandController()
+        private static ICustomer<Customer> CustomerRepositories;
+        private static ILand<Land> LandRepositories;
+        public LandController(ICustomer<Customer> _Repositories, ILand<Land> _LandRepositories)
         {
-            LandRepositories = new LandRepositories();
-            CustomerRepositories = new CustomerRepositories();
+            CustomerRepositories = _Repositories;
+            LandRepositories = _LandRepositories;
         }
 
         public ActionResult Index()
