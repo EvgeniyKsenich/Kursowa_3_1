@@ -23,5 +23,8 @@ namespace KR.Business.Entities
         [Range(0, 100000)]
         [DisplayName("Price")]
         public int price { get; set; }
+
+        [Editable(false)]
+        public int zakazId { get; set; }
     }
 }

@@ -14,18 +14,12 @@ namespace KR.DbEF
     
     public partial class work
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public work()
-        {
-            this.zakaz = new HashSet<zakaz>();
-        }
-    
         public int id { get; set; }
         public string typee { get; set; }
         public int countt { get; set; }
         public int price { get; set; }
+        public int zakazId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zakaz> zakaz { get; set; }
+        public virtual zakaz zakaz { get; set; }
     }
 }

@@ -27,6 +27,7 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="subj" ColumnName="subj" />
           <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="zakazId" ColumnName="zakazId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,6 +60,7 @@
           <ScalarProperty Name="typee" ColumnName="typee" />
           <ScalarProperty Name="countt" ColumnName="countt" />
           <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="zakazId" ColumnName="zakazId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -82,13 +84,77 @@
         <ScalarProperty Name="id" ColumnName="zakaz_id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="zakaz_work" TypeName="LD_kursModel.zakaz_work" StoreEntitySet="zakaz_work">
-      <EndProperty Name="work">
-        <ScalarProperty Name="id" ColumnName="work_id" />
-      </EndProperty>
-      <EndProperty Name="zakaz">
-        <ScalarProperty Name="id" ColumnName="zakazs_id" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="GetOrderReport2" FunctionName="Хранилище LD_kursModel.GetOrderReport2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.GetOrderReport2_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="designer_id" ColumnName="designer_id" />
+          <ScalarProperty Name="land_id" ColumnName="land_id" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="id1" ColumnName="id1" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="addres" ColumnName="addres" />
+          <ScalarProperty Name="id2" ColumnName="id2" />
+          <ScalarProperty Name="name1" ColumnName="name1" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="id3" ColumnName="id3" />
+          <ScalarProperty Name="name2" ColumnName="name2" />
+          <ScalarProperty Name="surname1" ColumnName="surname1" />
+          <ScalarProperty Name="age1" ColumnName="age1" />
+          <ScalarProperty Name="difficulties_id" ColumnName="difficulties_id" />
+          <ScalarProperty Name="zakaz_id" ColumnName="zakaz_id" />
+          <ScalarProperty Name="id4" ColumnName="id4" />
+          <ScalarProperty Name="subj" ColumnName="subj" />
+          <ScalarProperty Name="price1" ColumnName="price1" />
+          <ScalarProperty Name="zakazId" ColumnName="zakazId" />
+          <ScalarProperty Name="id5" ColumnName="id5" />
+          <ScalarProperty Name="typee" ColumnName="typee" />
+          <ScalarProperty Name="countt" ColumnName="countt" />
+          <ScalarProperty Name="price2" ColumnName="price2" />
+          <ScalarProperty Name="zakazId1" ColumnName="zakazId1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgOrderReportYear" FunctionName="Хранилище LD_kursModel.AvgOrderReportYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReportYear_Result">
+          <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgOrderReport" FunctionName="Хранилище LD_kursModel.AvgOrderReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReport_Result">
+          <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgOrderReportMonth" FunctionName="Хранилище LD_kursModel.AvgOrderReportMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReportMonth_Result">
+          <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

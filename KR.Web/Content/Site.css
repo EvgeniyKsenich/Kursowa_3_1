@@ -65,3 +65,12 @@ div.dropdown {
     margin-right: 10%;
     margin-bottom: 15px;
 }
+
+.reports {
+    padding: 20px
+}
+
+.send{
+    display:block;
+    margin-top:10px;
+}

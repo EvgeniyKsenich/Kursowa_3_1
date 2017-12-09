@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6158506cea8c482e9964839458066d2d" Name="Diagram1">
+      <Diagram DiagramId="ec92ba0155e14b5490e7aa0d651ae753" Name="Diagram1">
         <EntityTypeShape EntityType="LD_kursModel.customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LD_kursModel.designer" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LD_kursModel.difficulties" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LD_kursModel.land" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LD_kursModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LD_kursModel.work" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LD_kursModel.work" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LD_kursModel.zakaz" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="LD_kursModel.FK__land__customer_i__145C0A3F" ManuallyRouted="false" />
         <AssociationConnector Association="LD_kursModel.FK__zakaz__designer___1BFD2C07" ManuallyRouted="false" />
         <AssociationConnector Association="LD_kursModel.FK__zakaz__land_id__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="LD_kursModel.FK__work__zakazId__0F624AF8" ManuallyRouted="false" />
         <AssociationConnector Association="LD_kursModel.zakaz_difficulties" ManuallyRouted="false" />
-        <AssociationConnector Association="LD_kursModel.zakaz_work" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,6 +12,8 @@ namespace KR.DbEF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class LD_kursEntities : DbContext
     {
@@ -32,5 +34,29 @@ namespace KR.DbEF
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<work> work { get; set; }
         public virtual DbSet<zakaz> zakaz { get; set; }
+    
+        public virtual ObjectResult<GetOrderReport2_Result> GetOrderReport2(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetOrderReport2_Result>("GetOrderReport2", idParameter);
+        }
+    
+        public virtual ObjectResult<AvgOrderReportYear_Result> AvgOrderReportYear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReportYear_Result>("AvgOrderReportYear");
+        }
+    
+        public virtual ObjectResult<AvgOrderReport_Result> AvgOrderReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReport_Result>("AvgOrderReport");
+        }
+    
+        public virtual ObjectResult<AvgOrderReportMonth_Result> AvgOrderReportMonth()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReportMonth_Result>("AvgOrderReportMonth");
+        }
     }
 }

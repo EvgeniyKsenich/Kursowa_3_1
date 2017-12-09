@@ -156,7 +156,19 @@ namespace KR.Web.Controllers
 
         //========================
 
-        public FileResult GetReport(int id)
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
+        public FileResult GetAvgOrderReport(string Time)
+        {
+            var report = ZakazInfoRepositories.GetOrderReport(Time);
+            var file = OrderDateReportBilders.GetReport(report);
+            return File(file, "application/pdf", "report.pdf");
+        }
+
+        public FileResult GetOrderReport(int id)
         {
             var report = ZakazInfoRepositories.GetReport(id);
             var file = OrderReportBilders.GetReport(report);

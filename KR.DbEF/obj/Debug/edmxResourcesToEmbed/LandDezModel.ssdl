@@ -25,6 +25,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="subj" Type="varchar" MaxLength="36" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="zakazId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="land">
     <Key>
@@ -54,6 +55,7 @@
     <Property Name="typee" Type="varchar" MaxLength="36" Nullable="false" />
     <Property Name="countt" Type="int" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="zakazId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="zakaz">
     <Key>
@@ -74,14 +76,6 @@
     <Property Name="difficulties_id" Type="int" Nullable="false" />
     <Property Name="zakaz_id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="zakaz_work">
-    <Key>
-      <PropertyRef Name="zakazs_id" />
-      <PropertyRef Name="work_id" />
-    </Key>
-    <Property Name="zakazs_id" Type="int" Nullable="false" />
-    <Property Name="work_id" Type="int" Nullable="false" />
-  </EntityType>
   <Association Name="FK__land__customer_i__145C0A3F">
     <End Role="customer" Type="Self.customer" Multiplicity="1" />
     <End Role="land" Type="Self.land" Multiplicity="*" />
@@ -91,6 +85,18 @@
       </Principal>
       <Dependent Role="land">
         <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__work__zakazId__0F624AF8">
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
+    <End Role="work" Type="Self.work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zakaz">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="work">
+        <PropertyRef Name="zakazId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -118,7 +124,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__zakaz_dif__diffi__73BA3083">
+  <Association Name="FK__zakaz_dif__diffi__0A9D95DB">
     <End Role="difficulties" Type="Self.difficulties" Multiplicity="1" />
     <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
     <ReferentialConstraint>
@@ -130,7 +136,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__zakaz_dif__zakaz__74AE54BC">
+  <Association Name="FK__zakaz_dif__zakaz__0B91BA14">
     <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
     <End Role="zakaz_difficulties" Type="Self.zakaz_difficulties" Multiplicity="*" />
     <ReferentialConstraint>
@@ -142,30 +148,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__zakaz_wor__work___693CA210">
-    <End Role="work" Type="Self.work" Multiplicity="1" />
-    <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="work">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="zakaz_work">
-        <PropertyRef Name="work_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__zakaz_wor__zakaz__68487DD7">
-    <End Role="zakaz" Type="Self.zakaz" Multiplicity="1" />
-    <End Role="zakaz_work" Type="Self.zakaz_work" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="zakaz">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="zakaz_work">
-        <PropertyRef Name="zakazs_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <Function Name="AvgOrderReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="AvgOrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="AvgOrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetOrderReport2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="Хранилище LD_kursModelContainer">
     <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="designer" EntityType="Self.designer" Schema="dbo" store:Type="Tables" />
@@ -175,10 +163,13 @@
     <EntitySet Name="work" EntityType="Self.work" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="zakaz_difficulties" EntityType="Self.zakaz_difficulties" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="zakaz_work" EntityType="Self.zakaz_work" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__land__customer_i__145C0A3F" Association="Self.FK__land__customer_i__145C0A3F">
       <End Role="customer" EntitySet="customer" />
       <End Role="land" EntitySet="land" />
+    </AssociationSet>
+    <AssociationSet Name="FK__work__zakazId__0F624AF8" Association="Self.FK__work__zakazId__0F624AF8">
+      <End Role="zakaz" EntitySet="zakaz" />
+      <End Role="work" EntitySet="work" />
     </AssociationSet>
     <AssociationSet Name="FK__zakaz__designer___1BFD2C07" Association="Self.FK__zakaz__designer___1BFD2C07">
       <End Role="designer" EntitySet="designer" />
@@ -188,21 +179,13 @@
       <End Role="land" EntitySet="land" />
       <End Role="zakaz" EntitySet="zakaz" />
     </AssociationSet>
-    <AssociationSet Name="FK__zakaz_dif__diffi__73BA3083" Association="Self.FK__zakaz_dif__diffi__73BA3083">
+    <AssociationSet Name="FK__zakaz_dif__diffi__0A9D95DB" Association="Self.FK__zakaz_dif__diffi__0A9D95DB">
       <End Role="difficulties" EntitySet="difficulties" />
       <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
     </AssociationSet>
-    <AssociationSet Name="FK__zakaz_dif__zakaz__74AE54BC" Association="Self.FK__zakaz_dif__zakaz__74AE54BC">
+    <AssociationSet Name="FK__zakaz_dif__zakaz__0B91BA14" Association="Self.FK__zakaz_dif__zakaz__0B91BA14">
       <End Role="zakaz" EntitySet="zakaz" />
       <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
-    </AssociationSet>
-    <AssociationSet Name="FK__zakaz_wor__work___693CA210" Association="Self.FK__zakaz_wor__work___693CA210">
-      <End Role="work" EntitySet="work" />
-      <End Role="zakaz_work" EntitySet="zakaz_work" />
-    </AssociationSet>
-    <AssociationSet Name="FK__zakaz_wor__zakaz__68487DD7" Association="Self.FK__zakaz_wor__zakaz__68487DD7">
-      <End Role="zakaz" EntitySet="zakaz" />
-      <End Role="zakaz_work" EntitySet="zakaz_work" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

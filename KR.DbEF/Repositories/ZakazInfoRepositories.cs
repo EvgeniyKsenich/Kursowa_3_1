@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KR.Business.Entities;
+using KR.Business.Reports;
 using KR.Business.Repositories;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace KR.DbEF.Repositories
             IEnumerable<ZakazInfo> Zakaz;
             using (LD_kursEntities db = new LD_kursEntities())
             {
-                var  zakaz = db.zakaz
+                var zakaz = db.zakaz
                     .Where(item => item.designer.name.Contains(nameDesigner))
                     .Where(item => item.designer.surname.Contains(surnameDesigner))
                     .Where(item => item.land.customer.name.Contains(nameCustomer))
@@ -119,7 +120,7 @@ namespace KR.DbEF.Repositories
                 db.Entry(zakaz).State = EntityState.Deleted;
                 db.SaveChanges();
                 //}
-                
+
             }
             return Info;
         }
@@ -151,6 +152,33 @@ namespace KR.DbEF.Repositories
                 Report.DifficultiesList = Mapper.Map<List<Difficulties>>(zakaz.difficulties);
             }
             return Report;
+        }
+
+        public OrderCommonDate GetOrderReport(string time)
+        {
+            var Order = new OrderCommonDate();
+
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                if (time == "3")
+                {
+                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReportMonth").SingleOrDefault();
+                    Order.Period = "Month";
+                }
+                else
+                if (time == "2")
+                {
+                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReportYear").SingleOrDefault();
+                    Order.Period = "Year";
+                }
+                else
+                {
+                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReport").SingleOrDefault();
+                    Order.Period = "All period";
+                }
+            }
+
+            return Order;
         }
 
     }

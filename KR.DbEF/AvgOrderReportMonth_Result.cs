@@ -10,22 +10,14 @@
 namespace KR.DbEF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class difficulties
+    public partial class AvgOrderReportMonth_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public difficulties()
-        {
-            this.zakaz = new HashSet<zakaz>();
-        }
-    
-        public int id { get; set; }
-        public string subj { get; set; }
-        public int price { get; set; }
-        public int zakazId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zakaz> zakaz { get; set; }
+        public Nullable<int> AvgPrice { get; set; }
+        public Nullable<int> AvgLandSize { get; set; }
+        public Nullable<int> MaxPrice { get; set; }
+        public Nullable<int> MaxLandSize { get; set; }
+        public Nullable<int> MinPrice { get; set; }
+        public Nullable<int> MinLandSize { get; set; }
     }
 }

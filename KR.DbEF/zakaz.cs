@@ -17,8 +17,8 @@ namespace KR.DbEF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zakaz()
         {
-            this.difficulties = new HashSet<difficulties>();
             this.work = new HashSet<work>();
+            this.difficulties = new HashSet<difficulties>();
         }
     
         public int id { get; set; }
@@ -31,8 +31,8 @@ namespace KR.DbEF
         public virtual designer designer { get; set; }
         public virtual land land { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<difficulties> difficulties { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<work> work { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<difficulties> difficulties { get; set; }
     }
 }

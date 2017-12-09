@@ -150,6 +150,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AvgOrderReportMonth_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AvgOrderReportYear_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AvgOrderReport_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="customer.cs">
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>
@@ -157,6 +166,9 @@
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>
     <Compile Include="difficulties.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetOrderReport2_Result.cs">
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>
     <Compile Include="land.cs">

@@ -31,10 +31,14 @@ CREATE TABLE  land (
 	FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
+--drop table difficulties
+-- Trash Contaminated water
+
 CREATE TABLE  difficulties (
     id int NOT NULL IDENTITY (1,1),
     subj varchar(36) NOT NULL,
 	price int Not Null,
+	zakazId int not null,
 	PRIMARY KEY (id)
 );
 
@@ -45,7 +49,7 @@ CREATE TABLE  difficulties (
 --	FOREIGN KEY (land_id) REFERENCES land(id)
 --);
 
-drop table zakaz_difficulties
+--drop table zakaz_difficulties
 
 CREATE TABLE  zakaz_difficulties (
     difficulties_id int NOT NULL,
@@ -69,21 +73,64 @@ CREATE TABLE  zakaz (
 
 --Alter table work
 --ADD  price int Not NULL
+--drop table work
 
 CREATE TABLE  work (
     id int NOT NULL IDENTITY (1,1),
     typee varchar(36) NOT NULL,
 	countt int NOT NULL,
 	price int Not NULL,
-	PRIMARY KEY (id)
+	zakazId int Not Null,
+	PRIMARY KEY (id),
+	FOREIGN KEY (zakazId) REFERENCES zakaz(id)
 );
 
 --drop table zakaz_work
 
-CREATE TABLE  zakaz_work (
-    zakazs_id int NOT NULL,
-    work_id int NOT NULL ,
-	FOREIGN KEY (zakazs_id) REFERENCES zakaz(id),
-	FOREIGN KEY (work_id) REFERENCES work(id),
-	primary key (zakazs_id, work_id)
-);
+--CREATE TABLE  zakaz_work (
+--    zakazs_id int NOT NULL,
+--    work_id int NOT NULL ,
+--	FOREIGN KEY (zakazs_id) REFERENCES zakaz(id),
+--	FOREIGN KEY (work_id) REFERENCES work(id),
+--	primary key (zakazs_id, work_id)
+--);
+
+
+
+
+
+
+
+
+
+
+
+--DROP PROCEDURE GetOrderReport
+--DROP PROCEDURE GetOrderReport
+
+CREATE PROCEDURE GetOrderReport @id int,
+ @OrderId int Output, @start_time Date Output, @end_time Date Output,
+ @DesignerName varchar(36) output,  @DesignerSurname varchar(36) output,
+ @CustomerName varchar(36) output,  @CustomerSurname varchar(36) output
+AS
+SELECT @OrderId = zakaz.id, 
+	   @start_time = zakaz.start_time,  @end_time = zakaz.end_time,
+	   @DesignerName = designer.name, @DesignerSurname = designer.surname,
+	   @CustomerName = customer.name, @CustomerSurname = customer.surname
+from zakaz
+inner join land on land.id = zakaz.land_id
+inner join customer on customer.id = land.customer_id
+inner join designer on designer.id = zakaz.designer_id
+inner join zakaz_difficulties on zakaz_difficulties.zakaz_id = zakaz.id
+inner join difficulties on difficulties.id = zakaz_difficulties.difficulties_id
+inner join work on work.zakazId = zakaz.id
+where zakaz.id = @id
+GO
+
+declare @OrderId int
+declare @id int
+declare @start_time Date
+set @id = 16
+set @OrderId = 2
+exec GetOrderReport @id,  @OrderId output , @start_time output
+select id = @OrderId, startTime = @start_time
