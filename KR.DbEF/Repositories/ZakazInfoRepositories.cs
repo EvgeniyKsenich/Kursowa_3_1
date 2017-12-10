@@ -5,6 +5,7 @@ using KR.Business.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -162,18 +163,18 @@ namespace KR.DbEF.Repositories
             {
                 if (time == "3")
                 {
-                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReportMonth").SingleOrDefault();
+                    Order = db.Database.SqlQuery<OrderCommonDate>("OrderReportMonth").SingleOrDefault();
                     Order.Period = "Month";
                 }
                 else
                 if (time == "2")
                 {
-                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReportYear").SingleOrDefault();
+                    Order = db.Database.SqlQuery<OrderCommonDate>("OrderReportYear").SingleOrDefault();
                     Order.Period = "Year";
                 }
                 else
                 {
-                    Order = db.Database.SqlQuery<OrderCommonDate>("AvgOrderReport").SingleOrDefault();
+                    Order = db.Database.SqlQuery<OrderCommonDate>("OrderReportAllTime").SingleOrDefault();
                     Order.Period = "All period";
                 }
             }
@@ -181,5 +182,42 @@ namespace KR.DbEF.Repositories
             return Order;
         }
 
+
+        public OrderExtraReport GetExtraReport(int time, int size)
+        {
+            var Order = new OrderExtraReport();
+
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                int LandSize = 0;
+                if (size == 3)
+                    LandSize = 500;
+                if (size == 2)
+                    LandSize = 1000;
+
+                var clientIdParameter = new SqlParameter("@minLandSize", LandSize);
+
+                if (time == 3)
+                {
+                    Order = db.Database.SqlQuery<OrderExtraReport>("ExtraOrderReportMonth @minLandSize", clientIdParameter).SingleOrDefault();
+                    Order.Period = "Month";
+                }
+                else
+                    if (time == 2)
+                {
+                    Order = db.Database.SqlQuery<OrderExtraReport>("ExtraOrderReportYear @minLandSize", clientIdParameter).SingleOrDefault();
+                    Order.Period = "Year";
+                }
+                else
+                {
+                    Order = db.Database.SqlQuery<OrderExtraReport>("ExtraOrderReport @minLandSize", clientIdParameter).SingleOrDefault();
+                    Order.Period = "Year";
+                }
+
+                Order.LandVariable = LandSize;
+
+            }
+            return Order;
+        }
     }
 }

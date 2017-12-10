@@ -155,5 +155,41 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ExtraOrderReport" FunctionName="Хранилище LD_kursModel.ExtraOrderReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReport_Result">
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+          <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+          <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ExtraOrderReportMonth" FunctionName="Хранилище LD_kursModel.ExtraOrderReportMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReportMonth_Result">
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+          <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+          <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ExtraOrderReportYear" FunctionName="Хранилище LD_kursModel.ExtraOrderReportYear">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReportYear_Result">
+          <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+          <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+          <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+          <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+          <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+          <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

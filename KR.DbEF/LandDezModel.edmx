@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="customer">
           <Key>
             <PropertyRef Name="id" />
@@ -155,6 +155,9 @@
         <Function Name="AvgOrderReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AvgOrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AvgOrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ExtraOrderReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ExtraOrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ExtraOrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="OrderReportAllTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="OrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="OrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -192,8 +195,7 @@
             <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LD_kursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -360,6 +362,9 @@
           <FunctionImport Name="OrderReportAllTime" ReturnType="Collection(LD_kursModel.OrderReportAllTime_Result)" />
           <FunctionImport Name="OrderReportMonth" ReturnType="Collection(LD_kursModel.OrderReportMonth_Result)" />
           <FunctionImport Name="OrderReportYear" ReturnType="Collection(LD_kursModel.OrderReportYear_Result)" />
+          <FunctionImport Name="ExtraOrderReport" ReturnType="Collection(LD_kursModel.ExtraOrderReport_Result)" />
+          <FunctionImport Name="ExtraOrderReportMonth" ReturnType="Collection(LD_kursModel.ExtraOrderReportMonth_Result)" />
+          <FunctionImport Name="ExtraOrderReportYear" ReturnType="Collection(LD_kursModel.ExtraOrderReportYear_Result)" />
         </EntityContainer>
         <ComplexType Name="AvgOrderReport_Result">
           <Property Type="Int32" Name="AvgPrice" Nullable="true" />
@@ -408,6 +413,30 @@
           <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
           <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
           <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ExtraOrderReport_Result">
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+          <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+          <Property Type="Int32" Name="ZakazCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ExtraOrderReportMonth_Result">
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+          <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+          <Property Type="Int32" Name="ZakazCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ExtraOrderReportYear_Result">
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+          <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+          <Property Type="Int32" Name="ZakazCount" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -566,6 +595,42 @@
                 <ScalarProperty Name="AvgWorkCount" ColumnName="AvgWorkCount" />
                 <ScalarProperty Name="MaxWorkCount" ColumnName="MaxWorkCount" />
                 <ScalarProperty Name="MinWorkCount" ColumnName="MinWorkCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ExtraOrderReport" FunctionName="Хранилище LD_kursModel.ExtraOrderReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReport_Result">
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+                <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+                <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ExtraOrderReportMonth" FunctionName="Хранилище LD_kursModel.ExtraOrderReportMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReportMonth_Result">
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+                <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+                <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ExtraOrderReportYear" FunctionName="Хранилище LD_kursModel.ExtraOrderReportYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.ExtraOrderReportYear_Result">
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxStartTime" ColumnName="MaxStartTime" />
+                <ScalarProperty Name="MinStartTime" ColumnName="MinStartTime" />
+                <ScalarProperty Name="ZakazCount" ColumnName="ZakazCount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

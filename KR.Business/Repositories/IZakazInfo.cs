@@ -9,20 +9,20 @@ namespace KR.Business.Repositories
     {
         IEnumerable<T> GetList();
 
-        IEnumerable<ZakazInfo> GetList(List<S> zakaz);
+        IEnumerable<T> GetList(List<S> zakaz);
 
-        IEnumerable<ZakazInfo> GetList(string nameDesigner, string surnameDesigner,
+        IEnumerable<T> GetList(string nameDesigner, string surnameDesigner,
                               string nameCustomer, string surnameCustomer, string price,
                               string startDate, string endDate);
 
-        ZakazInfo GetbyId(int id);
+        T GetbyId(int id);
 
-        ZakazInfo Delete(int id);
+        T Delete(int id);
 
         OrderReport GetReport(int id);
 
         OrderCommonDate GetOrderReport(string time);
-        
 
+        OrderExtraReport GetExtraReport(int time, int size);
     }
 }

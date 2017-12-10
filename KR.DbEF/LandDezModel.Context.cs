@@ -64,5 +64,20 @@ namespace KR.DbEF
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderReportYear_Result>("OrderReportYear");
         }
+    
+        public virtual ObjectResult<ExtraOrderReport_Result> ExtraOrderReport()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ExtraOrderReport_Result>("ExtraOrderReport");
+        }
+    
+        public virtual ObjectResult<ExtraOrderReportMonth_Result> ExtraOrderReportMonth()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ExtraOrderReportMonth_Result>("ExtraOrderReportMonth");
+        }
+    
+        public virtual ObjectResult<ExtraOrderReportYear_Result> ExtraOrderReportYear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ExtraOrderReportYear_Result>("ExtraOrderReportYear");
+        }
     }
 }

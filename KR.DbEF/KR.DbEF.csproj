@@ -168,6 +168,15 @@
     <Compile Include="difficulties.cs">
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExtraOrderReportMonth_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraOrderReportYear_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraOrderReport_Result.cs">
+      <DependentUpon>LandDezModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="land.cs">
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>

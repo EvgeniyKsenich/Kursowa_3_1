@@ -9,16 +9,16 @@ namespace KR.Business.Reports
     {
         public string Period { get; set; }
 
-        public int AvgPrice { get; set; }
-
         public int AvgLandSize { get; set; }
-
-        public int MaxPrice { get; set; }
 
         public int MaxLandSize { get; set; }
 
-        public int MinPrice { get; set; }
-
         public int MinLandSize { get; set; }
+
+        public int AvgWorkCount { get; set; }
+
+        public int MaxWorkCount { get; set; }
+
+        public int MinWorkCount { get; set; }
     }
 }

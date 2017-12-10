@@ -184,5 +184,15 @@ namespace KR.Web_.Controllers
             return File(file, "application/pdf", "report.pdf");
         }
 
+        [Authorize(Roles = "admin")]
+        public FileResult GetExtraOrderReport(int Time, int size)
+        {
+            var report = ZakazInfoRepositories.GetExtraReport(Time, size);
+            var file = ExtraOrderReportBilders.GetReport(report);
+            return File(file, "application/pdf", "report.pdf");
+        }
+
+
+
     }
 }

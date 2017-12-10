@@ -163,6 +163,9 @@
     <FunctionImport Name="OrderReportAllTime" ReturnType="Collection(LD_kursModel.OrderReportAllTime_Result)" />
     <FunctionImport Name="OrderReportMonth" ReturnType="Collection(LD_kursModel.OrderReportMonth_Result)" />
     <FunctionImport Name="OrderReportYear" ReturnType="Collection(LD_kursModel.OrderReportYear_Result)" />
+    <FunctionImport Name="ExtraOrderReport" ReturnType="Collection(LD_kursModel.ExtraOrderReport_Result)" />
+    <FunctionImport Name="ExtraOrderReportMonth" ReturnType="Collection(LD_kursModel.ExtraOrderReportMonth_Result)" />
+    <FunctionImport Name="ExtraOrderReportYear" ReturnType="Collection(LD_kursModel.ExtraOrderReportYear_Result)" />
   </EntityContainer>
   <ComplexType Name="AvgOrderReport_Result">
     <Property Type="Int32" Name="AvgPrice" Nullable="true" />
@@ -211,5 +214,29 @@
     <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
     <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
     <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ExtraOrderReport_Result">
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+    <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+    <Property Type="Int32" Name="ZakazCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ExtraOrderReportMonth_Result">
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+    <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+    <Property Type="Int32" Name="ZakazCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ExtraOrderReportYear_Result">
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="DateTime" Name="MaxStartTime" Nullable="true" />
+    <Property Type="DateTime" Name="MinStartTime" Nullable="true" />
+    <Property Type="Int32" Name="ZakazCount" Nullable="true" />
   </ComplexType>
 </Schema>

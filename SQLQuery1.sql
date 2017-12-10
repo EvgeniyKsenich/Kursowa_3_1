@@ -158,12 +158,10 @@ left join zakaz_difficulties on zakaz_difficulties.zakaz_id = zakaz.id
 inner join difficulties on difficulties.id = zakaz_difficulties.difficulties_id
 group by zakaz.id
 
-select  AVG(land.size) as AvgLandSize,
-		Max(land.size) as MaxLandSize,
-		Min(land.size) as MinLandSize,
-		AVG((work.countt)) as AvgWorkCount,
-		Max((work.countt)) as MaxWorkCount,
-		Min((work.countt)) as MinWorkCount
+select *  
 from zakaz 
 left join work on work.zakazId = zakaz.id
 inner join land on land.id = zakaz.land_id
+
+
+

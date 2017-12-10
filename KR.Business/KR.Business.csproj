@@ -105,7 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportBilders\OrderDateReportBilders.cs" />
     <Compile Include="ReportBilders\OrderReportBilders.cs" />
+    <Compile Include="ReportBilders\ExtraOrderReportBilders.cs" />
     <Compile Include="ReportBilders\ReportBilders.cs" />
+    <Compile Include="Reports\OrderExtraReport.cs" />
     <Compile Include="Reports\OrderCommonDate.cs" />
     <Compile Include="Reports\OrderReport.cs" />
     <Compile Include="Repositories\IDifficulties.cs" />
