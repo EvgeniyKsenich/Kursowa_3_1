@@ -2,9 +2,14 @@ CREATE TABLE  designer (
     id int NOT NULL IDENTITY (1,1),
     name varchar(36) NOT NULL,
     surname varchar(36) NOT NULL,
-	age int NOT NULL,
+	 dateOfBirth Date Not Null,
 	PRIMARY KEY (id)
 );
+
+--alter table designer 
+--drop column age 
+--alter table designer 
+--add  dateOfBirth Date Not Null
 
 --CREATE TABLE  designer_priceList (
 --    id int NOT NULL,
@@ -18,9 +23,15 @@ CREATE TABLE  customer (
     id int NOT NULL IDENTITY (1,1),
     name varchar(36) NOT NULL,
     surname varchar(36) NOT NULL,
-	age int NOT NULL,
+	dateOfBirth Date Not Null,
 	PRIMARY KEY (id)
 );
+
+--alter table customer 
+--drop column dateOfBirth 
+--alter table customer 
+--add  dateOfBirth Date Not Null
+--delete customer where customer.id = 
 
 CREATE TABLE  land (
     id int NOT NULL IDENTITY (1,1),
@@ -38,9 +49,11 @@ CREATE TABLE  difficulties (
     id int NOT NULL IDENTITY (1,1),
     subj varchar(36) NOT NULL,
 	price int Not Null,
-	zakazId int not null,
 	PRIMARY KEY (id)
 );
+
+alter table difficulties
+drop column zakazId
 
 --CREATE TABLE  customer_land (
 --    customer_id int NOT NULL,
@@ -134,3 +147,23 @@ set @id = 16
 set @OrderId = 2
 exec GetOrderReport @id,  @OrderId output , @start_time output
 select id = @OrderId, startTime = @start_time
+
+
+
+
+declare @count int
+select @count = Count(difficulties.id)
+from zakaz 
+left join zakaz_difficulties on zakaz_difficulties.zakaz_id = zakaz.id
+inner join difficulties on difficulties.id = zakaz_difficulties.difficulties_id
+group by zakaz.id
+
+select  AVG(land.size) as AvgLandSize,
+		Max(land.size) as MaxLandSize,
+		Min(land.size) as MinLandSize,
+		AVG((work.countt)) as AvgWorkCount,
+		Max((work.countt)) as MaxWorkCount,
+		Min((work.countt)) as MinWorkCount
+from zakaz 
+left join work on work.zakazId = zakaz.id
+inner join land on land.id = zakaz.land_id

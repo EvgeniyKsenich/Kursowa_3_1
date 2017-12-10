@@ -22,7 +22,7 @@
                     <span>Surname</span>
                 </th>
                 <th>
-                    <span>Age</span>
+                    <span>Date of Birth</span>
                 </th>
                 <th></th>
             </tr>
@@ -37,7 +37,7 @@
                         @Html.DisplayFor(modelItem => item.surname)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.age)
+                        @Html.DisplayFor(modelItem => item.dateOfBirth)
                     </td>
                     <td>
                         @Html.ActionLink("Details", "Info", new { id = item.id })

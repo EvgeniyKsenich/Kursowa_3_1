@@ -20,8 +20,7 @@ namespace KR.Business.Entities
         [DisplayName("Surname")]
         public string surname { get; set; }
 
-        [Range(0, 170)]
-        [DisplayName("Age")]
-        public int age { get; set; }
+        [DisplayName("Date of Birdth")]
+        public DateTime dateOfBirth { get; set; }
     }
 }

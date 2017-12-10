@@ -23,7 +23,6 @@ namespace KR.DbEF
         public int id { get; set; }
         public string subj { get; set; }
         public int price { get; set; }
-        public int zakazId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zakaz> zakaz { get; set; }

@@ -35,20 +35,6 @@ namespace KR.DbEF
         public virtual DbSet<work> work { get; set; }
         public virtual DbSet<zakaz> zakaz { get; set; }
     
-        public virtual ObjectResult<GetOrderReport2_Result> GetOrderReport2(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetOrderReport2_Result>("GetOrderReport2", idParameter);
-        }
-    
-        public virtual ObjectResult<AvgOrderReportYear_Result> AvgOrderReportYear()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReportYear_Result>("AvgOrderReportYear");
-        }
-    
         public virtual ObjectResult<AvgOrderReport_Result> AvgOrderReport()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReport_Result>("AvgOrderReport");
@@ -57,6 +43,26 @@ namespace KR.DbEF
         public virtual ObjectResult<AvgOrderReportMonth_Result> AvgOrderReportMonth()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReportMonth_Result>("AvgOrderReportMonth");
+        }
+    
+        public virtual ObjectResult<AvgOrderReportYear_Result> AvgOrderReportYear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgOrderReportYear_Result>("AvgOrderReportYear");
+        }
+    
+        public virtual ObjectResult<OrderReportAllTime_Result> OrderReportAllTime()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderReportAllTime_Result>("OrderReportAllTime");
+        }
+    
+        public virtual ObjectResult<OrderReportMonth_Result> OrderReportMonth()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderReportMonth_Result>("OrderReportMonth");
+        }
+    
+        public virtual ObjectResult<OrderReportYear_Result> OrderReportYear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderReportYear_Result>("OrderReportYear");
         }
     }
 }

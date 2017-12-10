@@ -23,17 +23,29 @@ namespace KR.DbEF.Repositories
             return Customer;
         }
 
-        public IEnumerable<Customer> GetList(string name, string surname, string age)
+        public IEnumerable<Customer> GetList(string name, string surname, string dateOfB)
         {
             List<customer> customer;
             List<Customer> Customer;
+            
             using (LD_kursEntities db = new LD_kursEntities())
             {
-                customer = db.customer
+                DateTime result = new DateTime();
+                if (DateTime.TryParse(dateOfB, out result))
+                {
+                    customer = db.customer
                     .Where(item => item.name.Contains(name))
                     .Where(item => item.surname.Contains(surname))
-                    .Where(item => item.age.ToString().Contains(age))
+                    .Where(item => item.dateOfBirth == result)
                     .ToList();
+                }
+                else
+                {
+                    customer = db.customer
+                    .Where(item => item.name.Contains(name))
+                    .Where(item => item.surname.Contains(surname))
+                    .ToList();
+                }
                 Customer = Mapper.Map<List<Customer>>(customer.OrderByDescending(x => x.id));
             }
             return Customer;

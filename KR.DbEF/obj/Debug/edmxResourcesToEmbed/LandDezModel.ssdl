@@ -7,7 +7,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
     <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
-    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="dateOfBirth" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="designer">
     <Key>
@@ -16,7 +16,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
     <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
-    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="dateOfBirth" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="difficulties">
     <Key>
@@ -25,7 +25,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="subj" Type="varchar" MaxLength="36" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
-    <Property Name="zakazId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="land">
     <Key>
@@ -151,9 +150,9 @@
   <Function Name="AvgOrderReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="AvgOrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="AvgOrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="GetOrderReport2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id" Type="int" Mode="In" />
-  </Function>
+  <Function Name="OrderReportAllTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="OrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="OrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Хранилище LD_kursModelContainer">
     <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="designer" EntityType="Self.designer" Schema="dbo" store:Type="Tables" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище LD_kursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="customer">
           <Key>
             <PropertyRef Name="id" />
@@ -12,7 +12,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
-          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="dateOfBirth" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="designer">
           <Key>
@@ -21,7 +21,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="surname" Type="varchar" MaxLength="36" Nullable="false" />
-          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="dateOfBirth" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="difficulties">
           <Key>
@@ -30,7 +30,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="subj" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="zakazId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="land">
           <Key>
@@ -156,9 +155,9 @@
         <Function Name="AvgOrderReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AvgOrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AvgOrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetOrderReport2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
+        <Function Name="OrderReportAllTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OrderReportMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OrderReportYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище LD_kursModelContainer">
           <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="designer" EntityType="Self.designer" Schema="dbo" store:Type="Tables" />
@@ -193,7 +192,8 @@
             <End Role="zakaz_difficulties" EntitySet="zakaz_difficulties" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LD_kursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -204,7 +204,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="land" Relationship="Self.FK__land__customer_i__145C0A3F" FromRole="customer" ToRole="land" />
         </EntityType>
         <EntityType Name="designer">
@@ -214,7 +214,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="zakaz" Relationship="Self.FK__zakaz__designer___1BFD2C07" FromRole="designer" ToRole="zakaz" />
         </EntityType>
         <EntityType Name="difficulties">
@@ -224,7 +224,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="subj" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="zakazId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="zakaz" Relationship="Self.zakaz_difficulties" FromRole="difficulties" ToRole="zakaz" />
         </EntityType>
         <EntityType Name="land">
@@ -355,53 +354,13 @@
             <End Role="difficulties" EntitySet="difficulties" />
             <End Role="zakaz" EntitySet="zakaz" />
           </AssociationSet>
-          <FunctionImport Name="GetOrderReport2" ReturnType="Collection(LD_kursModel.GetOrderReport2_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AvgOrderReportYear" ReturnType="Collection(LD_kursModel.AvgOrderReportYear_Result)" />
           <FunctionImport Name="AvgOrderReport" ReturnType="Collection(LD_kursModel.AvgOrderReport_Result)" />
           <FunctionImport Name="AvgOrderReportMonth" ReturnType="Collection(LD_kursModel.AvgOrderReportMonth_Result)" />
+          <FunctionImport Name="AvgOrderReportYear" ReturnType="Collection(LD_kursModel.AvgOrderReportYear_Result)" />
+          <FunctionImport Name="OrderReportAllTime" ReturnType="Collection(LD_kursModel.OrderReportAllTime_Result)" />
+          <FunctionImport Name="OrderReportMonth" ReturnType="Collection(LD_kursModel.OrderReportMonth_Result)" />
+          <FunctionImport Name="OrderReportYear" ReturnType="Collection(LD_kursModel.OrderReportYear_Result)" />
         </EntityContainer>
-        <ComplexType Name="GetOrderReport2_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="designer_id" Nullable="false" />
-          <Property Type="Int32" Name="land_id" Nullable="false" />
-          <Property Type="Int32" Name="price" Nullable="false" />
-          <Property Type="DateTime" Name="start_time" Nullable="false" />
-          <Property Type="DateTime" Name="end_time" Nullable="false" />
-          <Property Type="Int32" Name="id1" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="36" />
-          <Property Type="Int32" Name="customer_id" Nullable="false" />
-          <Property Type="Int32" Name="size" Nullable="false" />
-          <Property Type="String" Name="addres" Nullable="false" MaxLength="70" />
-          <Property Type="Int32" Name="id2" Nullable="false" />
-          <Property Type="String" Name="name1" Nullable="false" MaxLength="36" />
-          <Property Type="String" Name="surname" Nullable="false" MaxLength="36" />
-          <Property Type="Int32" Name="age" Nullable="false" />
-          <Property Type="Int32" Name="id3" Nullable="false" />
-          <Property Type="String" Name="name2" Nullable="false" MaxLength="36" />
-          <Property Type="String" Name="surname1" Nullable="false" MaxLength="36" />
-          <Property Type="Int32" Name="age1" Nullable="false" />
-          <Property Type="Int32" Name="difficulties_id" Nullable="false" />
-          <Property Type="Int32" Name="zakaz_id" Nullable="false" />
-          <Property Type="Int32" Name="id4" Nullable="false" />
-          <Property Type="String" Name="subj" Nullable="false" MaxLength="36" />
-          <Property Type="Int32" Name="price1" Nullable="false" />
-          <Property Type="Int32" Name="zakazId" Nullable="false" />
-          <Property Type="Int32" Name="id5" Nullable="false" />
-          <Property Type="String" Name="typee" Nullable="false" MaxLength="36" />
-          <Property Type="Int32" Name="countt" Nullable="false" />
-          <Property Type="Int32" Name="price2" Nullable="false" />
-          <Property Type="Int32" Name="zakazId1" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="AvgOrderReportYear_Result">
-          <Property Type="Int32" Name="AvgPrice" Nullable="true" />
-          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
-          <Property Type="Int32" Name="MaxPrice" Nullable="true" />
-          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
-          <Property Type="Int32" Name="MinPrice" Nullable="true" />
-          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="AvgOrderReport_Result">
           <Property Type="Int32" Name="AvgPrice" Nullable="true" />
           <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
@@ -418,6 +377,38 @@
           <Property Type="Int32" Name="MinPrice" Nullable="true" />
           <Property Type="Int32" Name="MinLandSize" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="AvgOrderReportYear_Result">
+          <Property Type="Int32" Name="AvgPrice" Nullable="true" />
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MaxPrice" Nullable="true" />
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinPrice" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrderReportAllTime_Result">
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrderReportMonth_Result">
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrderReportYear_Result">
+          <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+          <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+          <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+          <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -430,7 +421,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -440,7 +431,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -450,7 +441,6 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="subj" ColumnName="subj" />
                 <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="zakazId" ColumnName="zakazId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -507,54 +497,6 @@
               <ScalarProperty Name="id" ColumnName="zakaz_id" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="GetOrderReport2" FunctionName="Хранилище LD_kursModel.GetOrderReport2">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LD_kursModel.GetOrderReport2_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="designer_id" ColumnName="designer_id" />
-                <ScalarProperty Name="land_id" ColumnName="land_id" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="start_time" ColumnName="start_time" />
-                <ScalarProperty Name="end_time" ColumnName="end_time" />
-                <ScalarProperty Name="id1" ColumnName="id1" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="size" ColumnName="size" />
-                <ScalarProperty Name="addres" ColumnName="addres" />
-                <ScalarProperty Name="id2" ColumnName="id2" />
-                <ScalarProperty Name="name1" ColumnName="name1" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="id3" ColumnName="id3" />
-                <ScalarProperty Name="name2" ColumnName="name2" />
-                <ScalarProperty Name="surname1" ColumnName="surname1" />
-                <ScalarProperty Name="age1" ColumnName="age1" />
-                <ScalarProperty Name="difficulties_id" ColumnName="difficulties_id" />
-                <ScalarProperty Name="zakaz_id" ColumnName="zakaz_id" />
-                <ScalarProperty Name="id4" ColumnName="id4" />
-                <ScalarProperty Name="subj" ColumnName="subj" />
-                <ScalarProperty Name="price1" ColumnName="price1" />
-                <ScalarProperty Name="zakazId" ColumnName="zakazId" />
-                <ScalarProperty Name="id5" ColumnName="id5" />
-                <ScalarProperty Name="typee" ColumnName="typee" />
-                <ScalarProperty Name="countt" ColumnName="countt" />
-                <ScalarProperty Name="price2" ColumnName="price2" />
-                <ScalarProperty Name="zakazId1" ColumnName="zakazId1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AvgOrderReportYear" FunctionName="Хранилище LD_kursModel.AvgOrderReportYear">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReportYear_Result">
-                <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
-                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
-                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
-                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
-                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
-                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AvgOrderReport" FunctionName="Хранилище LD_kursModel.AvgOrderReport">
             <ResultMapping>
               <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReport_Result">
@@ -576,6 +518,54 @@
                 <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
                 <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
                 <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AvgOrderReportYear" FunctionName="Хранилище LD_kursModel.AvgOrderReportYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.AvgOrderReportYear_Result">
+                <ScalarProperty Name="AvgPrice" ColumnName="AvgPrice" />
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderReportAllTime" FunctionName="Хранилище LD_kursModel.OrderReportAllTime">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.OrderReportAllTime_Result">
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgWorkCount" ColumnName="AvgWorkCount" />
+                <ScalarProperty Name="MaxWorkCount" ColumnName="MaxWorkCount" />
+                <ScalarProperty Name="MinWorkCount" ColumnName="MinWorkCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderReportMonth" FunctionName="Хранилище LD_kursModel.OrderReportMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.OrderReportMonth_Result">
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgWorkCount" ColumnName="AvgWorkCount" />
+                <ScalarProperty Name="MaxWorkCount" ColumnName="MaxWorkCount" />
+                <ScalarProperty Name="MinWorkCount" ColumnName="MinWorkCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderReportYear" FunctionName="Хранилище LD_kursModel.OrderReportYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LD_kursModel.OrderReportYear_Result">
+                <ScalarProperty Name="AvgLandSize" ColumnName="AvgLandSize" />
+                <ScalarProperty Name="MaxLandSize" ColumnName="MaxLandSize" />
+                <ScalarProperty Name="MinLandSize" ColumnName="MinLandSize" />
+                <ScalarProperty Name="AvgWorkCount" ColumnName="AvgWorkCount" />
+                <ScalarProperty Name="MaxWorkCount" ColumnName="MaxWorkCount" />
+                <ScalarProperty Name="MinWorkCount" ColumnName="MinWorkCount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

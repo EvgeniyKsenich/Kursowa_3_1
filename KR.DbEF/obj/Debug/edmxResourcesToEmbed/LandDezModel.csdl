@@ -7,7 +7,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="land" Relationship="Self.FK__land__customer_i__145C0A3F" FromRole="customer" ToRole="land" />
   </EntityType>
   <EntityType Name="designer">
@@ -17,7 +17,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="surname" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="zakaz" Relationship="Self.FK__zakaz__designer___1BFD2C07" FromRole="designer" ToRole="zakaz" />
   </EntityType>
   <EntityType Name="difficulties">
@@ -27,7 +27,6 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="subj" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
-    <Property Name="zakazId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="zakaz" Relationship="Self.zakaz_difficulties" FromRole="difficulties" ToRole="zakaz" />
   </EntityType>
   <EntityType Name="land">
@@ -158,53 +157,13 @@
       <End Role="difficulties" EntitySet="difficulties" />
       <End Role="zakaz" EntitySet="zakaz" />
     </AssociationSet>
-    <FunctionImport Name="GetOrderReport2" ReturnType="Collection(LD_kursModel.GetOrderReport2_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AvgOrderReportYear" ReturnType="Collection(LD_kursModel.AvgOrderReportYear_Result)" />
     <FunctionImport Name="AvgOrderReport" ReturnType="Collection(LD_kursModel.AvgOrderReport_Result)" />
     <FunctionImport Name="AvgOrderReportMonth" ReturnType="Collection(LD_kursModel.AvgOrderReportMonth_Result)" />
+    <FunctionImport Name="AvgOrderReportYear" ReturnType="Collection(LD_kursModel.AvgOrderReportYear_Result)" />
+    <FunctionImport Name="OrderReportAllTime" ReturnType="Collection(LD_kursModel.OrderReportAllTime_Result)" />
+    <FunctionImport Name="OrderReportMonth" ReturnType="Collection(LD_kursModel.OrderReportMonth_Result)" />
+    <FunctionImport Name="OrderReportYear" ReturnType="Collection(LD_kursModel.OrderReportYear_Result)" />
   </EntityContainer>
-  <ComplexType Name="GetOrderReport2_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="designer_id" Nullable="false" />
-    <Property Type="Int32" Name="land_id" Nullable="false" />
-    <Property Type="Int32" Name="price" Nullable="false" />
-    <Property Type="DateTime" Name="start_time" Nullable="false" />
-    <Property Type="DateTime" Name="end_time" Nullable="false" />
-    <Property Type="Int32" Name="id1" Nullable="false" />
-    <Property Type="String" Name="name" Nullable="false" MaxLength="36" />
-    <Property Type="Int32" Name="customer_id" Nullable="false" />
-    <Property Type="Int32" Name="size" Nullable="false" />
-    <Property Type="String" Name="addres" Nullable="false" MaxLength="70" />
-    <Property Type="Int32" Name="id2" Nullable="false" />
-    <Property Type="String" Name="name1" Nullable="false" MaxLength="36" />
-    <Property Type="String" Name="surname" Nullable="false" MaxLength="36" />
-    <Property Type="Int32" Name="age" Nullable="false" />
-    <Property Type="Int32" Name="id3" Nullable="false" />
-    <Property Type="String" Name="name2" Nullable="false" MaxLength="36" />
-    <Property Type="String" Name="surname1" Nullable="false" MaxLength="36" />
-    <Property Type="Int32" Name="age1" Nullable="false" />
-    <Property Type="Int32" Name="difficulties_id" Nullable="false" />
-    <Property Type="Int32" Name="zakaz_id" Nullable="false" />
-    <Property Type="Int32" Name="id4" Nullable="false" />
-    <Property Type="String" Name="subj" Nullable="false" MaxLength="36" />
-    <Property Type="Int32" Name="price1" Nullable="false" />
-    <Property Type="Int32" Name="zakazId" Nullable="false" />
-    <Property Type="Int32" Name="id5" Nullable="false" />
-    <Property Type="String" Name="typee" Nullable="false" MaxLength="36" />
-    <Property Type="Int32" Name="countt" Nullable="false" />
-    <Property Type="Int32" Name="price2" Nullable="false" />
-    <Property Type="Int32" Name="zakazId1" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="AvgOrderReportYear_Result">
-    <Property Type="Int32" Name="AvgPrice" Nullable="true" />
-    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
-    <Property Type="Int32" Name="MaxPrice" Nullable="true" />
-    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
-    <Property Type="Int32" Name="MinPrice" Nullable="true" />
-    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="AvgOrderReport_Result">
     <Property Type="Int32" Name="AvgPrice" Nullable="true" />
     <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
@@ -220,5 +179,37 @@
     <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
     <Property Type="Int32" Name="MinPrice" Nullable="true" />
     <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AvgOrderReportYear_Result">
+    <Property Type="Int32" Name="AvgPrice" Nullable="true" />
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MaxPrice" Nullable="true" />
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinPrice" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OrderReportAllTime_Result">
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OrderReportMonth_Result">
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OrderReportYear_Result">
+    <Property Type="Int32" Name="AvgLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MaxLandSize" Nullable="true" />
+    <Property Type="Int32" Name="MinLandSize" Nullable="true" />
+    <Property Type="Int32" Name="AvgWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MaxWorkCount" Nullable="true" />
+    <Property Type="Int32" Name="MinWorkCount" Nullable="true" />
   </ComplexType>
 </Schema>
