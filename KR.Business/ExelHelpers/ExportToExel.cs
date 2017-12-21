@@ -129,8 +129,8 @@ namespace KR.Business.ExelHelpers
                 m = 3;
                 foreach (var items in List.OrdersInfo)
                 {
-                    worksheet.Cells[m, 30].Value = items.DifficultiesId;
-                    worksheet.Cells[m, 31].Value = items.OrderId;
+                    worksheet.Cells[m, 34].Value = items.DifficultiesId;
+                    worksheet.Cells[m, 35].Value = items.OrderId;
                     m++;
                 }
 
