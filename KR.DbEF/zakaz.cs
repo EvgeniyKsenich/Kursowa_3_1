@@ -11,7 +11,9 @@ namespace KR.DbEF
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public partial class zakaz
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,15 +26,29 @@ namespace KR.DbEF
         public int id { get; set; }
         public int designer_id { get; set; }
         public int land_id { get; set; }
-        public int price { get; set; }
+        //public int price { get; set; }
         public System.DateTime start_time { get; set; }
         public System.DateTime end_time { get; set; }
-    
+
         public virtual designer designer { get; set; }
         public virtual land land { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<work> work { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<difficulties> difficulties { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int price
+        {
+            get
+            {
+                int sum = work.Sum(item => item.price * item.countt);
+                if (land != null)
+                    sum += land.size * 15;
+                sum += difficulties.Sum(item => item.price);
+                return sum;
+            }
+            private set { /* needed for EF */ }
+        }
     }
 }

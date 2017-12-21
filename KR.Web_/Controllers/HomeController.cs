@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using KR.DbEF;
+using KR.Business.ExelHelpers;
 
 namespace KR.Web_.Controllers
 {
@@ -23,7 +24,9 @@ namespace KR.Web_.Controllers
         private static IZakazInfo<ZakazInfo, zakaz> ZakazInfoRepositories;
         private static ISingleOrder<SingleOrder> SingleOrderRepo;
         private static IDifficulties<Difficulties> DiffiicultsRepo;
-        
+
+        private static ExportRepositories ExportRepositories;
+
         public HomeController(IZakaz<Zakaz> _ZakazRepositories,
                               IWork<Work> _WorkRepositories,
                               IZakazInfo<ZakazInfo, zakaz> _ZakazInfoRepositories,
@@ -35,15 +38,19 @@ namespace KR.Web_.Controllers
             ZakazInfoRepositories = _ZakazInfoRepositories;
             SingleOrderRepo = _SingleOrderRepo;
             DiffiicultsRepo = _DiffiicultsRepo;
+
+            ExportRepositories = new ExportRepositories();
         }
 
         [Authorize]
         public ActionResult Index(int? page,
             string nameDesigner, string surnameDesigner,
             string nameCustomer, string surnameCustomer,
-            string price,
+            int? OrderPrice,
             string startDate, string endDate)
         {
+            string prise = String.Empty;
+
             if (String.IsNullOrEmpty(nameDesigner))
                 nameDesigner = String.Empty;
             if (String.IsNullOrEmpty(surnameDesigner))
@@ -54,16 +61,18 @@ namespace KR.Web_.Controllers
             if (String.IsNullOrEmpty(surnameCustomer))
                 surnameCustomer = String.Empty;
 
-            if (String.IsNullOrEmpty(price))
-                price = String.Empty;
+            //throw new Exception("Price: " + OrderPrice);
+
+            if (OrderPrice != null)
+                prise = OrderPrice.Value.ToString();
 
             if (String.IsNullOrEmpty(startDate))
                 startDate = String.Empty;
             if (String.IsNullOrEmpty(endDate))
                 endDate = String.Empty;
-
+           
             var List = ZakazInfoRepositories.GetList(nameDesigner, surnameDesigner,
-                                                     nameCustomer, surnameCustomer, price, startDate, endDate);
+                                                     nameCustomer, surnameCustomer, prise, startDate, endDate);
 
             if (List == null)
                 List = new List<ZakazInfo>();
@@ -192,7 +201,13 @@ namespace KR.Web_.Controllers
             return File(file, "application/pdf", "report.pdf");
         }
 
-
+        [Authorize(Roles = "admin")]
+        public FileResult GetExelDb()
+        {
+            var List = ExportRepositories.GetList();
+            var file = ExportToExel.Download(List);
+            return File(file, "application/vnd.ms-excel", "export.xlsx");
+        }
 
     }
 }

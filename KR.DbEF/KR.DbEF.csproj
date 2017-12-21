@@ -205,6 +205,7 @@
       <DependentUpon>LandDezModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ExportRepositories.cs" />
     <Compile Include="Repositories\LandRepositories.cs" />
     <Compile Include="Repositories\DesignerRepositories.cs" />
     <Compile Include="Repositories\CustomerRepositories.cs" />

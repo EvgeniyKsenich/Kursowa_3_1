@@ -144,3 +144,5 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.csprojR
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.dll
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\obj\Debug\KR.Web_.pdb
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\bin\WebActivatorEx.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\bin\EPPlus.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.Web_\bin\EPPlus.xml

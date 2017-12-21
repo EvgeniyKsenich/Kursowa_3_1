@@ -42,7 +42,6 @@ namespace KR.DbEF.Repositories
             List<ZakazInfo> InfoList = new List<ZakazInfo>();
             using (LD_kursEntities db = new LD_kursEntities())
             {
-
                 foreach (var item in zakaz)
                 {
                     InfoList.Add(new ZakazInfo()
@@ -107,20 +106,27 @@ namespace KR.DbEF.Repositories
                 var zakaz = db.zakaz.SingleOrDefault(c => c.id == id);
                 if (zakaz == null)
                     return null;
-                //using (var tran = db.Database.BeginTransaction())
-                //{
-
-                foreach (var item in zakaz.difficulties.ToList())
+                using (var transaction = db.Database.BeginTransaction())
                 {
-                    //db.Entry(item).State = EntityState.Deleted;
+                    try
+                    {
+                        foreach (var item in zakaz.difficulties.ToList())
+                        {
+                            db.Entry(item).State = EntityState.Deleted;
+                        }
+                        foreach (var item in zakaz.work.ToList())
+                        {
+                            db.Entry(item).State = EntityState.Deleted;
+                        }
+                        db.Entry(zakaz).State = EntityState.Deleted;
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                    }
                 }
-                foreach (var item in zakaz.work.ToList())
-                {
-                    //db.Entry(item).State = EntityState.Deleted;
-                }
-                db.Entry(zakaz).State = EntityState.Deleted;
-                db.SaveChanges();
-                //}
 
             }
             return Info;
@@ -138,6 +144,7 @@ namespace KR.DbEF.Repositories
                 Report.OrderId = zakaz.id.ToString();
                 Report.start_time = zakaz.start_time;
                 Report.end_time = zakaz.end_time;
+                Report.price = zakaz.price;
 
                 Report.DesignerName = zakaz.designer.name;
                 Report.DesignerSurname = zakaz.designer.surname;

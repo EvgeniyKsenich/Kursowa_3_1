@@ -11,7 +11,6 @@ namespace KR.DbEF.Repositories
 {
     public class SingleOrderRepositories : ISingleOrder<SingleOrder>
     {
-       
         public SingleOrder GetbyId(int id)
         {
             SingleOrder order = new SingleOrder();

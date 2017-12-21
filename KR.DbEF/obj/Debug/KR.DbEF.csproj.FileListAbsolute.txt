@@ -171,3 +171,5 @@ C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\HtmlRenderer.PdfSharp
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\PdfSharp.xml
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\HtmlRenderer.PdfSharp.pdb
 C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\de\PdfSharp.resources.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\EPPlus.dll
+C:\Users\Женя\Documents\GitHub\Kursowa_3_1\KR.DbEF\bin\EPPlus.xml
