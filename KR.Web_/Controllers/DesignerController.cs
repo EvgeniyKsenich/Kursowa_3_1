@@ -79,7 +79,7 @@ namespace KR.Web.Controllers
             var customer = _Repositories.Delete(id);
             if (customer == null)
             {
-                Json(-1);
+                return Json(-1);
             }
             return Json(id);
         }

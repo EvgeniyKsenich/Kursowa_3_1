@@ -64,20 +64,50 @@ namespace KR.DbEF.Repositories
             }
         }
 
+        private designer GetbyIduser(int id)
+        {
+            using (LD_kursEntities db = new LD_kursEntities())
+            {
+                var user = db.designer.SingleOrDefault(c => c.id == id);
+                return (user);
+            }
+        }
+
         public Designer Delete(int id)
         {
-            var user = GetbyId(id);
+            var user = GetbyIduser(id);
             if (user != null)
             {
                 using (LD_kursEntities db = new LD_kursEntities())
                 {
-                    //db.items.Remove(user);
-                    db.Entry(Mapper.Map<designer>(user)).State = EntityState.Deleted;
-                    db.SaveChanges();
+                    using (var transaction = db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var orders = db.zakaz.Where(x => x.designer_id == id).ToList();
+                            foreach (var zakaz in orders)
+                            {
+                                var wk = db.work.Where(x => x.zakazId == zakaz.id).ToList();
+                                foreach (var it in wk)
+                                {
+                                    db.Entry(it).State = EntityState.Deleted;
+                                }
+                                db.Entry(zakaz).State = EntityState.Deleted;
+                            }
+                            db.Entry(user).State = EntityState.Deleted;
+                            db.SaveChanges();
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                        }
+                    }
                 }
             }
-            return user;
+            return Mapper.Map<Designer>(user);
         }
+
 
     }
 }

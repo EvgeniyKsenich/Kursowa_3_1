@@ -27,7 +27,7 @@ namespace KR.DbEF.Repositories
         {
             List<customer> customer;
             List<Customer> Customer;
-            
+
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 DateTime result = new DateTime();
@@ -105,23 +105,44 @@ namespace KR.DbEF.Repositories
 
         public Customer Delete(int id)
         {
-            var user  = GetcustomerById(id);
+            var user = GetcustomerById(id);
             using (LD_kursEntities db = new LD_kursEntities())
             {
                 if (user != null)
                 {
-                    foreach (var item in user.land)
+                    using (var transaction = db.Database.BeginTransaction())
                     {
-                        db.Entry(item).State = EntityState.Deleted;
+                        try
+                        {
+                            foreach (var item in user.land.ToList())
+                            {
+                                var orders = db.zakaz.Where(x => x.land.id == item.id).ToList();
+                                foreach (var zk in orders)
+                                {
+                                    var wk = db.work.Where(x => x.zakazId == zk.id).ToList();
+                                    foreach (var it in wk)
+                                    {
+                                        db.Entry(it).State = EntityState.Deleted;
+                                    }
+                                    db.Entry(zk).State = EntityState.Deleted;
+                                }
+                                db.Entry(item).State = EntityState.Deleted;
+                            }
+                            db.Entry(Mapper.Map<customer>(user)).State = EntityState.Deleted;
+                            db.SaveChanges();
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                        }
                     }
-                    db.Entry(Mapper.Map<customer>(user)).State = EntityState.Deleted;
-                    db.SaveChanges();
                 }
             }
             return Mapper.Map<Customer>(user);
         }
 
-       //test
+        //test
         public Customer Del(int id)
         {
             var user = GetcustomerById(id);
