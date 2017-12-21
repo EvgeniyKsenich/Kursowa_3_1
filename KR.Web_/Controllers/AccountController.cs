@@ -403,6 +403,28 @@ namespace KR.Web_.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult Role()
+        {
+            var Users = UserManager.Users.ToList();
+            return View(Users);
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult ToUser(string id)
+        {
+            var result1 = UserManager.RemoveFromRole(id, "admin");
+            return RedirectToAction("Role");
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult ToAdmin(string id)
+        {
+            var result1 = UserManager.AddToRole(id, "admin");
+            return RedirectToAction("Role");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -481,5 +503,6 @@ namespace KR.Web_.Controllers
             }
         }
         #endregion
+
     }
 }

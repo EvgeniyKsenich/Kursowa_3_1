@@ -1,0 +1,36 @@
+﻿@model IEnumerable<KR.Web_.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Role";
+}
+
+<h2>Role</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @if (item.Roles.ToList().Where(x => x.RoleId == "c0e4109e-c093-4b50-b75e-efe37bbcbe49").Count() != 0  )
+            {
+                @Html.ActionLink("Make User", "ToUser", new { id = item.Id });
+            }
+            else
+            {
+                @Html.ActionLink("Make Admin", "ToAdmin", new { id = item.Id });
+            }
+        </td>
+    </tr>
+}
+
+</table>
