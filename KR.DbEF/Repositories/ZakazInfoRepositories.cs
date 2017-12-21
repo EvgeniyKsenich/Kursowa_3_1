@@ -110,10 +110,6 @@ namespace KR.DbEF.Repositories
                 {
                     try
                     {
-                        foreach (var item in zakaz.difficulties.ToList())
-                        {
-                            db.Entry(item).State = EntityState.Deleted;
-                        }
                         foreach (var item in zakaz.work.ToList())
                         {
                             db.Entry(item).State = EntityState.Deleted;

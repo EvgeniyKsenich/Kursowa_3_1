@@ -11,5 +11,9 @@ namespace KR.Business.Repositories
         IEnumerable<T> GetList();
 
         T Save(T item);
+
+        T Edit(T item);
+
+        T Get(int id);
     }
 }

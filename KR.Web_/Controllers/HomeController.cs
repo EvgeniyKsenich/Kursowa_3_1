@@ -61,8 +61,6 @@ namespace KR.Web_.Controllers
             if (String.IsNullOrEmpty(surnameCustomer))
                 surnameCustomer = String.Empty;
 
-            //throw new Exception("Price: " + OrderPrice);
-
             if (OrderPrice != null)
                 prise = OrderPrice.Value.ToString();
 
@@ -94,6 +92,30 @@ namespace KR.Web_.Controllers
 
         [HttpGet]
         [Authorize(Roles = "admin")]
+        public ActionResult Edit(int id)
+        {
+            var zakaz = ZakazRepositories.Get(id);
+            return View(zakaz);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public ActionResult Edit(Zakaz zakaz)
+        {
+            if (ModelState.IsValid)
+            {
+                var _zakaz = ZakazRepositories.Edit(zakaz);
+                if (_zakaz != null)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(zakaz);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Add(int id)
         {
             var zakaz = new Zakaz();
@@ -111,7 +133,7 @@ namespace KR.Web_.Controllers
                 var _zakaz = ZakazRepositories.Save(zakaz);
                 if (_zakaz != null)
                 {
-                    return RedirectToAction("Info", new { id = zakaz.id });
+                    return RedirectToAction("Index");
                 }
             }
             return View(zakaz);
@@ -166,10 +188,6 @@ namespace KR.Web_.Controllers
         }
 
 
-
-
-
-        //========================
 
         [Authorize(Roles = "admin")]
         public ActionResult Reports()

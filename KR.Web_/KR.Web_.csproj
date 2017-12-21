@@ -322,6 +322,7 @@
     <Content Include="Views\Land\Add.cshtml" />
     <Content Include="Views\Land\Edit.cshtml" />
     <Content Include="Views\Land\Info.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
