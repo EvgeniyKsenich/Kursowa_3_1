@@ -91,7 +91,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public ActionResult Edit(int id)
         {
             var zakaz = ZakazRepositories.Get(id);
@@ -100,7 +100,7 @@ namespace KR.Web_.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public ActionResult Edit(Zakaz zakaz)
         {
             if (ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public ActionResult Add(int id)
         {
             var zakaz = new Zakaz();
@@ -125,7 +125,7 @@ namespace KR.Web_.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public ActionResult Add(Zakaz zakaz)
         {
             if (ModelState.IsValid)
@@ -140,7 +140,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public JsonResult Delete(int id)
         {
             var zakaz = ZakazInfoRepositories.Delete(id);
@@ -151,7 +151,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public JsonResult AddDifficults(int orderId, int difficultsId)
         {
             var add = DiffiicultsRepo.Save(orderId, difficultsId);
@@ -159,7 +159,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public JsonResult DeleteDifficults(int orderId, int difficultsId)
         {
             var add = DiffiicultsRepo.Remove(orderId, difficultsId);
@@ -169,7 +169,7 @@ namespace KR.Web_.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public JsonResult AddWork(int orderId, Work work)
         {
             var add = WorkRepositories.Save(orderId, work);
@@ -178,7 +178,7 @@ namespace KR.Web_.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public JsonResult DeleteWork(int orderId, int workId)
         {
             var add = WorkRepositories.Remove(orderId, workId);
@@ -189,13 +189,13 @@ namespace KR.Web_.Controllers
 
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public ActionResult Reports()
         {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public FileResult GetAvgOrderReport(string Time)
         {
             var report = ZakazInfoRepositories.GetOrderReport(Time);
@@ -203,7 +203,7 @@ namespace KR.Web_.Controllers
             return File(file, "application/pdf", "report.pdf");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public FileResult GetOrderReport(int id)
         {
             var report = ZakazInfoRepositories.GetReport(id);
@@ -211,7 +211,7 @@ namespace KR.Web_.Controllers
             return File(file, "application/pdf", "report.pdf");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public FileResult GetExtraOrderReport(int Time, int size)
         {
             var report = ZakazInfoRepositories.GetExtraReport(Time, size);
@@ -219,7 +219,7 @@ namespace KR.Web_.Controllers
             return File(file, "application/pdf", "report.pdf");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, Designer")]
         public FileResult GetExelDb()
         {
             var List = ExportRepositories.GetList();
